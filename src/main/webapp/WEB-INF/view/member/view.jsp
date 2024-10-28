@@ -42,6 +42,43 @@
                 <input type="text" id="inputDate" value="${member.signed}" readonly name="signed"
                        class="form-control">
             </div>
+            <div class="mb-3">
+                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal1">
+                    <i class="fa-solid fa-user-minus"></i>
+                    Delete Account
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteConfirmModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Confirmation</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form action="/member/delete" method="post" id="deleteForm1">
+                        <input type="hidden" name="id" value="${member.id}">
+                        <label for="inputPassword2" class="form-label">
+                            Password
+                        </label>
+                        <input class="form-control" type="text" name="password" id="inputPassword2">
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    close
+                </button>
+                <button form="deleteForm1" class="btn btn-danger">
+                    Delete
+                </button>
+            </div>
         </div>
     </div>
 </div>

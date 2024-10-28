@@ -25,4 +25,9 @@ public class MemberService {
     public Member view(String id) {
         return mapper.selectById(id);
     }
+
+    public boolean delete(String id, String password) {
+        int count = mapper.deleteByIdAndPassword(id, password);
+        return count == 1;
+    }
 }

@@ -44,4 +44,23 @@ public class MemberController {
         Member member = service.view(id);
         model.addAttribute("member", member);
     }
+
+    @PostMapping("delete")
+    public String delete(String id, String password,
+                         RedirectAttributes rttr) {
+        if (service.delete(id, password)) {
+            rttr.addFlashAttribute("message", Map.of(
+                    "type", "dark",
+                    "text", "It was a pleasure to have you with us."
+            ));
+            return "redirect:/member/register";
+        } else {
+            rttr.addFlashAttribute("message", Map.of(
+                    "type", "danger",
+                    "text", "Incorrect password"
+            ));
+            rttr.addAttribute("id", id);
+            return "redirect:/member/view";
+        }
+    }
 }
