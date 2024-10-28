@@ -15,6 +15,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/board/new">New Post</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/member/register">Register</a>
+                </li>
             </ul>
         </div>
     </div>
