@@ -20,7 +20,7 @@
 <div class="container text-bg-primary">
     <div class="row justify-content-center">
         <div class="col-12 col-md-9 col-lg-6">
-            <h2 class="my-3 mx-3">New Message</h2>
+            <h2 class="my-3 mx-3">New Post</h2>
             <form method="post">
                 <div class="mb-3">
                     <label for="inputTitle" class="form-label">Title</label>
@@ -34,7 +34,7 @@
                 <div class="mb-3">
                     <button class="btn btn-light" type="button">
                         post
-                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa-solid fa-earth-americas"></i>
                     </button>
                 </div>
             </form>
