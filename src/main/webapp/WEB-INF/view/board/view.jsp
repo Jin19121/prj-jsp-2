@@ -18,32 +18,34 @@
     <div class="row justify-content-center">
         <div class="col-12 col-md-9 col-lg-6">
             <h2 class="my-3 mx-3">${board.id} Post</h2>
-            <form method="post">
-                <div class="mb-3">
-                    <label for="inputTitle1" class="form-label">Title</label>
-                    <input readonly type="text" id="inputTitle1" value="${board.title}" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="inputContent" class="form-label">Content</label>
-                    <textarea readonly name="content" id="inputContent" class="form-control" cols="30"
-                              rows="10">${board.content}</textarea>
-                </div>
-                <div class="mb-4">
-                    <label for="inputWriter1" class="form-label">Writer</label>
-                    <input readonly type="text" name="writer" id="inputWriter1" class="form-control"
-                           value="${board.writer}">
-                </div>
-                <div class="mb-4">
-                    <label for="inputDate" class="form-label">Date</label>
-                    <input readonly type="datetime-local" value="${board.date}" id="inputDate" class="form-control"/>
-                </div>
-                <div class="mb-4">
-                    <button class="btn btn-light">
+            <div class="mb-3">
+                <label for="inputTitle1" class="form-label">Title</label>
+                <input readonly type="text" id="inputTitle1" value="${board.title}" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="inputContent" class="form-label">Content</label>
+                <textarea readonly name="content" id="inputContent" class="form-control" cols="30"
+                          rows="10">${board.content}</textarea>
+            </div>
+            <div class="mb-4">
+                <label for="inputWriter1" class="form-label">Writer</label>
+                <input readonly type="text" name="writer" id="inputWriter1" class="form-control"
+                       value="${board.writer}">
+            </div>
+
+            <div class="mb-4">
+                <label for="inputDate" class="form-label">Date</label>
+                <input readonly type="datetime-local" value="${board.date}" id="inputDate" class="form-control"/>
+            </div>
+            <div class="mb-4">
+                <form action="/board/delete" method="post">
+                    <input type="hidden" name="id" value="${board.id}">
+                    <button class="btn btn-outline-danger btn-light">
                         <i class="fa-regular fa-trash-can"></i>
                         삭제
                     </button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 </div>

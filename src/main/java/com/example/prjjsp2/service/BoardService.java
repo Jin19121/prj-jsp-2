@@ -23,7 +23,6 @@ public class BoardService {
         return list;
     }
 
-
     public Board view(Integer id) {
         return mapper.selectById(id);
     }

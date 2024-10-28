@@ -24,16 +24,16 @@ public interface BoardMapper {
             """)
     List<Board> selectAll();
 
-    @Delete("""
-            DELETE FROM board
-            WHERE id = #{id}
-            """)
-    int deleteById(Integer id);
-
     @Select("""
             SELECT title, content, writer, date
             FROM board
             WHERE id = #{id}
             """)
     Board selectById(Integer id);
+
+    @Delete("""
+            DELETE FROM board
+            WHERE id = #{id}
+            """)
+    int deleteById(Integer id);
 }
