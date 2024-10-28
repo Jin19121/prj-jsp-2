@@ -17,8 +17,8 @@
 <div class="container text-bg-primary">
     <div class="row justify-content-center">
         <div class="col-12 col-md-9 col-lg-6">
-            <h2 class="my-3 mx-3">Edit Post ${board.id}</h2>
-            <form method="post">
+            <h2 class="my-3 mx-3">Edit Post #${board.id}</h2>
+            <form method="post" id="updateForm">
                 <div class="mb-3">
                     <label for="inputTitle1" class="form-label">Title</label>
                     <input type="text" id="inputTitle1" name="title" value="${board.title}" class="form-control">
@@ -32,13 +32,38 @@
                     <label for="inputWriter1" class="form-label">Writer</label>
                     <input type="text" name="writer" value="${board.writer}" id="inputWriter1" class="form-control"/>
                 </div>
+
                 <div class="mb-4">
-                    <button class="btn btn-light">
-                        <i class="fa-solid fa-plus"></i>
-                        저장
+                    <button class="btn btn-outline-success btn-light" data-bs-toggle="modal"
+                            data-bs-target="#updateConfirmModal">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        edit
                     </button>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="updateConfirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Confirmation</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Save edited post #${board.id}?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    close
+                </button>
+                <button form="updateForm" class="btn btn-success">
+                    save
+                </button>
+            </div>
         </div>
     </div>
 </div>
