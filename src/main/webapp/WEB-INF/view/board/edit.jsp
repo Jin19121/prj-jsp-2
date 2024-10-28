@@ -35,7 +35,7 @@
 
                 <div class="mb-4">
                     <button class="btn btn-outline-success btn-light" data-bs-toggle="modal"
-                            data-bs-target="#updateConfirmModal">
+                            data-bs-target="#updateConfirmModal" type="button">
                         <i class="fa-solid fa-pen-to-square"></i>
                         edit
                     </button>
