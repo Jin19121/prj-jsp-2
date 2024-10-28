@@ -37,22 +37,47 @@
                 <label for="inputDate" class="form-label">Date</label>
                 <input readonly type="datetime-local" value="${board.date}" id="inputDate" class="form-control"/>
             </div>
-            <div class="mb-4">
-                <form action="/board/delete" method="post">
-                    <input type="hidden" name="id" value="${board.id}">
-                    <button class="btn btn-outline-danger btn-light">
-                        <i class="fa-regular fa-trash-can"></i>
-                        삭제
-                    </button>
-                </form>
-                <a class="btn btn-outline-success btn-light" href="/board/edit?id=${board.id}">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                    수정
-                </a>
+            <button class="btn btn-outline-danger btn-light" data-bs-toggle="modal"
+                    data-bs-target="#deleteConfirmModal1">
+                <i class="fa-solid fa-trash-can"></i>
+                delete
+            </button>
+            <a class="btn btn-outline-success btn-light" href="/board/edit?id=${board.id}">
+                <i class="fa-solid fa-pen-to-square"></i>
+                edit
+            </a>
+
+            <form id="deleteForm1" class="d-none" action="/board/delete" method="post">
+                <input type="hidden" name="id" value="${board.id}">
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteConfirmModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Confirmation</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Delete post #${board.id}?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    close
+                </button>
+                <button form="deleteForm1" class="btn btn-danger">
+                    delete
+                </button>
             </div>
         </div>
     </div>
 </div>
+
+
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
