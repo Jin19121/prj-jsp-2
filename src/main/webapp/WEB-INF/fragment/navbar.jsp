@@ -10,13 +10,28 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="/board/list">Timeline</a>
+                    <a class="nav-link" href="/board/list">
+                        <i class="fa-solid fa-list"></i>
+                        Timeline
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/board/new">New Post</a>
+                    <a class="nav-link" href="/board/new">
+                        <i class="fa-solid fa-file-pen"></i>
+                        New Post
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/member/register">Register</a>
+                    <a class="nav-link" href="/member/register">
+                        <i class="fa-solid fa-user-plus"></i>
+                        Register
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/member/list" class="nav-link">
+                        <i class="fa-regular fa-address-book"></i>
+                        Members
+                    </a>
                 </li>
             </ul>
         </div>
