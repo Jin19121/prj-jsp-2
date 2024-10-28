@@ -17,7 +17,7 @@
 <div class="container text-bg-primary">
     <div class="row justify-content-center">
         <div class="col-12 col-md-9 col-lg-6">
-            <h2 class="my-3 mx-3">${board.id} Post</h2>
+            <h2 class="my-3 mx-3">Post ${board.id}</h2>
             <div class="mb-3">
                 <label for="inputTitle1" class="form-label">Title</label>
                 <input readonly type="text" id="inputTitle1" value="${board.title}" class="form-control">
@@ -45,6 +45,10 @@
                         삭제
                     </button>
                 </form>
+                <a class="btn btn-outline-success btn-light" href="/board/edit?id=${board.id}">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    수정
+                </a>
             </div>
         </div>
     </div>

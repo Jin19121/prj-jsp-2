@@ -8,8 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -22,9 +24,15 @@ public class BoardController {
     }
 
     @PostMapping("new")
-    public String newBoard(Board board) {
+    public String newBoard(Board board, RedirectAttributes rttr) {
         service.insert(board);
-        return "redirect:/board/list";
+
+        rttr.addFlashAttribute("message", Map.of(
+                "type", "success",
+                "text", "#" + board.getId() + " Posted"
+        ));
+        rttr.addAttribute("id", board.getId());
+        return "redirect:/board/view";
     }
 
     @GetMapping("list")
@@ -40,8 +48,32 @@ public class BoardController {
     }
 
     @PostMapping("delete")
-    public String deleteBoard(Integer id) {
+    public String deleteBoard(Integer id, RedirectAttributes rttr) {
         service.delete(id);
+
+        rttr.addFlashAttribute("message", Map.of(
+                "type", "warning",
+                "text", "Post #" + id + " Deleted"
+        ));
         return "redirect:/board/list";
     }
+
+    @GetMapping("edit")
+    public void editBoard(Integer id, Model model) {
+        Board board = service.view(id);
+        model.addAttribute("board", board);
+    }
+
+    @PostMapping("edit")
+    public String editBoard(Board board, RedirectAttributes rttr) {
+        service.update(board);
+
+        rttr.addFlashAttribute("message", Map.of(
+                "type", "success",
+                "text", "Post #" + board.getId() + " Edited"
+        ));
+        rttr.addAttribute("id", board.getId());
+        return "redirect:/board/view";
+    }
+
 }
