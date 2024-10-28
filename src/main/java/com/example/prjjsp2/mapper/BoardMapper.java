@@ -1,6 +1,7 @@
 package com.example.prjjsp2.mapper;
 
 import com.example.prjjsp2.dto.Board;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -22,4 +23,17 @@ public interface BoardMapper {
             ORDER BY id DESC
             """)
     List<Board> selectAll();
+
+    @Delete("""
+            DELETE FROM board
+            WHERE id = #{id}
+            """)
+    int deleteById(Integer id);
+
+    @Select("""
+            SELECT title, content, writer, date
+            FROM board
+            WHERE id = #{id}
+            """)
+    Board selectById(Integer id);
 }

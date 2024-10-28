@@ -22,4 +22,14 @@ public class BoardService {
         List<Board> list = mapper.selectAll();
         return list;
     }
+
+
+    public Board view(Integer id) {
+        return mapper.selectById(id);
+    }
+
+    public void delete(Integer id) {
+        mapper.deleteById(id);
+    }
+
 }

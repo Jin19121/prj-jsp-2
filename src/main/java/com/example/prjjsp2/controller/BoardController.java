@@ -32,4 +32,16 @@ public class BoardController {
         List<Board> list = service.list();
         model.addAttribute("boardList", list);
     }
+
+    @GetMapping("view")
+    public void viewBoard(Model model, Integer id) {
+        Board board = service.view(id);
+        model.addAttribute("board", board);
+    }
+
+    @PostMapping("delete")
+    public String deleteBoard(Integer id) {
+        service.delete(id);
+        return "redirect:/board/list";
+    }
 }

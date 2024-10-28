@@ -39,7 +39,11 @@
                 <tbody>
                 <c:forEach items="${boardList}" var="board">
                     <tr>
-                        <td>${board.id}</td>
+                        <td>
+                            <a href="/board/view?id=${board.id}">
+                                    ${board.id}
+                            </a>
+                        </td>
                         <td>${board.title}</td>
                         <td>${board.writer}</td>
                         <td class="d-none d-lg-table-cell">${board.date}</td>
