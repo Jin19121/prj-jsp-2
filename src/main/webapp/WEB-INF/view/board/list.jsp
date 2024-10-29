@@ -28,12 +28,12 @@
                     </th>
                     <th class="w-50">Title</th>
                     <th>
-                        <i class="fa-solid fa-user-pen"></i>
                         Writer
+                        <i class="fa-solid fa-user-pen"></i>
                     </th>
                     <th class="d-none d-lg-table-cell">
-                        <i class="fa-regular fa-calendar"></i>
                         Date
+                        <i class="fa-regular fa-calendar"></i>
                     </th>
                 </tr>
                 </thead>

@@ -18,7 +18,7 @@ public interface MemberMapper {
     @Select("""
             SELECT *
             FROM member
-            ORDER BY id
+            ORDER BY signed
             """)
     List<Member> selectAll();
 
