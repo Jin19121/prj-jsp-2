@@ -77,13 +77,13 @@
         <div class="col-auto">
             <select name="target" id="select1" class="form-select">
                 <option value="all">All</option>
-                <option value="title">Title</option>
-                <option value="content">Content</option>
-                <option value="writer">Writer</option>
+                <option value="title" ${param.target=='title'?'selected':''}>Title</option>
+                <option value="content" ${param.target=='content'?'selected':''}>Content</option>
+                <option value="writer" ${param.target=='writer'?'selected':''}>Writer</option>
             </select>
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-            <input type="text" name="keyword" class="form-control">
+            <input type="text" name="keyword" class="form-control" value="${param.keyword}">
         </div>
         <div class="col-auto">
             <button class="btn btn-outline-primary h-100">
@@ -97,8 +97,13 @@
 <nav class="mt-4">
     <ul class="pagination justify-content-center">
         <c:if test="${pageInfo.hasPrev}">
+            <c:url value="/board/list" var="pageLink">
+                <c:param name="page" value="${pageInfo.prev}"/>
+                <c:param name="target" value="${param.target}"/>
+                <c:param name="keyword" value="${param.keyword}"/>
+            </c:url>
             <li class="page-item">
-                <a href="/board/list?page=${pageInfo.prev}" class="page-link">
+                <a href="${pageLink}" class="page-link">
                     &laquo;
                 </a>
             </li>
@@ -106,13 +111,23 @@
         <c:forEach begin="${pageInfo.leftEnd}"
                    end="${pageInfo.rightEnd}"
                    var="pageNo">
-            <li class="page-item ${pageInfo.currentPageNumber == pageNo ? 'active' : ''}">
-                <a href="/board/list?page=${pageNo}" class="page-link">${pageNo}</a>
+            <c:url value="/board/list" var="pageLink">
+                <c:param name="page" value="${pageNo}"/>
+                <c:param name="target" value="${param.target}"/>
+                <c:param name="keyword" value="${param.keyword}"/>
+            </c:url>
+            <li class="page-item ${pageInfo.currentPage == pageNo ? 'active' : ''}">
+                <a href="${pageLink}" class="page-link">${pageNo}</a>
             </li>
         </c:forEach>
         <c:if test="${pageInfo.hasNext}">
+            <c:url value="/board/list" var="pageLink">
+                <c:param name="page" value="${pageInfo.next}"/>
+                <c:param name="target" value="${param.target}"/>
+                <c:param name="keyword" value="${param.keyword}"/>
+            </c:url>
             <li class="page-item">
-                <a href="/board/list?page=${pageInfo.next}" class="page-link">
+                <a href="${pageLink}" class="page-link">
                     &raquo;
                 </a>
             </li>

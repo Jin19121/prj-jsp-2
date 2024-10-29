@@ -35,15 +35,15 @@ public class BoardService {
         //Controller에게 넘겨줄 정보를 담은 map
         Map<String, Object> map = new HashMap<>();
 
-        Integer all = mapper.countAll();
+        Integer all = mapper.countAll(target, keyword);
         Integer lastPage = (all - 1) / 10 + 1; //마지막 페이지 번호
         Integer rightEnd = ((page - 1) / 10 + 1) * 10; //현재 페이지 기준 리스트의 오른쪽 끝 페이지 번호
         Integer leftEnd = rightEnd - 9; //현재 페이지 기준, 리스트의 왼쪽 끝 페이지 번호
         Integer next = page + 1; //다음 페이지로 이동 시 페이지 번호
         Integer prev = page - 1; //이전 페이지로 이동 시 페이지 번호
 
-        Boolean hasNext = next < lastPage; //다음 존재 유무
-        Boolean hasPrev = prev < 0; // 이전 페이지 존재 유무
+        Boolean hasNext = next <= lastPage; //다음 존재 유무
+        Boolean hasPrev = prev > 0; // 이전 페이지 존재 유무
 
         rightEnd = Math.min(rightEnd, lastPage); //오른쪽 끝 페이지 번호는 마지막 페이지보다 작다.
 
