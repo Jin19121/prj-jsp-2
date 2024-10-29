@@ -14,6 +14,7 @@
 <body>
 
 <c:import url="/WEB-INF/fragment/navbar.jsp"/>
+<c:set value="${not empty sessionScope.loggedIn}" var="loggedIn"/>
 
 <div class="container">
     <form action="" class="row justify-content-center">
@@ -53,6 +54,20 @@
             </table>
         </div>
     </form>
+
+    <%--    새 글 버튼--%>
+    <c:if test="${loggedIn}">
+        <div class="row justify-content-center">
+            <div class="col text-end">
+                <form action="/board/new">
+                    <button class="btn btn-primary btn-sm">
+                        New Post
+                        <i class="fa-solid fa-file-circle-plus"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </c:if>
 </div>
 
 
@@ -102,7 +117,6 @@
                 </a>
             </li>
         </c:if>
-
     </ul>
 </nav>
 
