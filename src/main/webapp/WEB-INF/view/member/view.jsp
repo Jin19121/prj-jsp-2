@@ -14,7 +14,8 @@
 <body>
 <c:import url="/WEB-INF/fragment/navbar.jsp"/>
 
-<%--TODO: 수정 및 삭제 권한 관리--%>
+<%-- 수정/삭제 권한 --%>
+<c:set value="${sessionScope.loggedIn.id == member.id}" var="permitted"/>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -46,50 +47,55 @@
             </div>
 
             <div class="mb-3 d-flex justify-content-between">
-                <a href="/member/edit?id=${member.id}" class="btn btn-outline-primary">
-                    <i class="fa-solid fa-user-pen"></i>
-                    Edit Profile
-                </a>
-                <button class="btn btn-outline-danger" data-bs-toggle="modal"
-                        data-bs-target="#deleteConfirmModal1">
-                    <i class="fa-solid fa-user-minus"></i>
-                    Delete Account
-                </button>
+                <c:if test="${permitted}">
+                    <a href="/member/edit?id=${member.id}" class="btn btn-outline-primary">
+                        <i class="fa-solid fa-user-pen"></i>
+                        Edit Profile
+                    </a>
+                    <button class="btn btn-outline-danger" data-bs-toggle="modal"
+                            data-bs-target="#deleteConfirmModal1">
+                        <i class="fa-solid fa-user-minus"></i>
+                        Delete Account
+                    </button>
+                </c:if>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="deleteConfirmModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5">Confirmation</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div>
-                    <form action="/member/delete" method="post" id="deleteForm1">
-                        <input type="hidden" name="id" value="${member.id}">
-                        <label for="inputPassword2" class="form-label">
-                            Password
-                        </label>
-                        <input class="form-control" type="text" name="password" id="inputPassword2">
-                    </form>
+<c:if test="${permitted}">
+    <!-- Modal -->
+    <div class="modal fade" id="deleteConfirmModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Confirmation</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    Close
-                </button>
-                <button form="deleteForm1" class="btn btn-danger">
-                    Delete
-                </button>
+                <div class="modal-body">
+                    <div>
+                        <form action="/member/delete" method="post" id="deleteForm1">
+                            <input type="hidden" name="id" value="${member.id}">
+                            <label for="inputPassword2" class="form-label">
+                                Password
+                            </label>
+                            <input class="form-control" type="text" name="password" id="inputPassword2">
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button form="deleteForm1" class="btn btn-danger">
+                        Delete
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</c:if>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
