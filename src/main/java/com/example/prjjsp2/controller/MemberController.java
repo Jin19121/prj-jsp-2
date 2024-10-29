@@ -68,17 +68,28 @@ public class MemberController {
 
     @PostMapping("delete")
     public String delete(String id, String password,
-                         RedirectAttributes rttr) {
-        if (service.delete(id, password)) {
-            rttr.addFlashAttribute("message", Map.of(
-                    "type", "dark",
-                    "text", "It was a pleasure to have you with us."
-            ));
-            return "redirect:/member/register";
+                         RedirectAttributes rttr, HttpSession session,
+                         @SessionAttribute("loggedIn") Member member) {
+        if (service.hasAccess(id, member)) {
+            //본인일 경우 삭제 권한 있음
+            if (service.delete(id, password)) {
+                rttr.addFlashAttribute("message", Map.of(
+                        "type", "dark",
+                        "text", "It was a pleasure to have you with us."
+                ));
+                return "redirect:/member/register";
+            } else {
+                rttr.addFlashAttribute("message", Map.of(
+                        "type", "danger",
+                        "text", "Incorrect password"
+                ));
+                rttr.addAttribute("id", id);
+                return "redirect:/member/view";
+            }
         } else {
             rttr.addFlashAttribute("message", Map.of(
                     "type", "danger",
-                    "text", "Incorrect password"
+                    "text", "You cannot delete other Members!"
             ));
             rttr.addAttribute("id", id);
             return "redirect:/member/view";
