@@ -45,7 +45,7 @@
                     <li class="nav-item">
                         <a href="/member/login" class="nav-link">
                             <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                            Log In
+                            Login
                         </a>
                     </li>
                 </c:if>
@@ -53,7 +53,7 @@
                     <li class="nav-item">
                         <a href="/member/logout" class="nav-link">
                             <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                            Log Out
+                            Logout
                         </a>
                     </li>
                 </c:if>

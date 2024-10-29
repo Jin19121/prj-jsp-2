@@ -17,7 +17,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col">
-            <h2 class="my-3">Log In</h2>
+            <h2 class="my-3">Login</h2>
             <form method="post">
                 <div class="mb-3">
                     <label for="inputId" class="form-label">ID</label>
