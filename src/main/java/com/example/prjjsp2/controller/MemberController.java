@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Map;
@@ -45,8 +46,18 @@ public class MemberController {
     }
 
     @GetMapping("list")
-    public void list(Model model) {
-        model.addAttribute("memberList", service.list());
+    public String list(Model model, RedirectAttributes rttr,
+                       @SessionAttribute(value = "loggedIn", required = false) Member member) {
+        if (member == null) {
+            rttr.addFlashAttribute("message", Map.of(
+                    "type", "warning",
+                    "text", "You are not logged in! Please login first!"
+            ));
+            return "redirect:/member/login";
+        } else {
+            model.addAttribute("memberList", service.list());
+            return null;
+        }
     }
 
     @GetMapping("view")
