@@ -66,7 +66,8 @@ public class BoardService {
     }
 
     public Board view(Integer id) {
-        return mapper.selectById(id);
+        Board board = mapper.selectById(id);
+        return board;
     }
 
     public void delete(Integer id, Member member) {

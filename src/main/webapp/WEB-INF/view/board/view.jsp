@@ -33,8 +33,8 @@
             </div>
             <div class="mb-4">
                 <label for="inputWriter1" class="form-label">Writer</label>
-                <input readonly type="text" name="writer" id="inputWriter1" class="form-control"
-                       value="${board.writer}">
+                <input readonly type="text" name="board.writerName" id="inputWriter1" class="form-control"
+                       value="${board.writerName}">
             </div>
             <div class="mb-4">
                 <label for="inputDate" class="form-label">Date</label>

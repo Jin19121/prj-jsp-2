@@ -46,7 +46,7 @@
                             </a>
                         </td>
                         <td>${board.title}</td>
-                        <td>${board.writer}</td>
+                        <td>${board.writerName}</td>
                         <td class="d-none d-lg-table-cell">${board.date}</td>
                     </tr>
                 </c:forEach>

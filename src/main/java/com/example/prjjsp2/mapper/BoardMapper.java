@@ -12,7 +12,7 @@ public interface BoardMapper {
     @Insert("""
             INSERT INTO board
             (title, content, writer)
-            VALUES (#{board.title}, #{board.content}, #{member.nickname})""")
+            VALUES (#{board.title}, #{board.content}, #{member.id})""")
     @Options(useGeneratedKeys = true, keyProperty = "board.id")
     int insert(Board board, Member member);
 
@@ -24,9 +24,10 @@ public interface BoardMapper {
     List<Board> selectAll();
 
     @Select("""
-            SELECT *
-            FROM board
-            WHERE id = #{id}
+            SELECT b.id, b.title, b.content, b.date, b.writer, m.nickname writerName
+            FROM board b JOIN member m
+            ON b.writer = m.id
+            WHERE b.id = #{m.id}
             """)
     Board selectById(Integer id);
 
@@ -46,8 +47,9 @@ public interface BoardMapper {
 
     @Select("""
             <script>
-            SELECT *
-            FROM board
+            SELECT b.id, b. title, b.date, m.nickname writerName
+            FROM board b JOIN member m
+              ON b.writer = m.id
             <trim prefix="WHERE" prefixOverrides="OR">
                 <if test = "target=='all' or target=='title'">
                     title LIKE CONCAT('%', #{keyword}, '%')
@@ -56,10 +58,10 @@ public interface BoardMapper {
                     OR content LIKE CONCAT('%', #{keyword}, '%')
                 </if>
                 <if test = "target=='all' or target=='writer'">
-                    OR writer LIKE CONCAT('%', #{keyword}, '%')
+                    OR m.nickname LIKE CONCAT('%', #{keyword}, '%')
                 </if>
             </trim>
-            ORDER BY id DESC
+            ORDER BY b.id DESC
             LIMIT #{offset}, 10
             </script>
             """)
@@ -67,7 +69,9 @@ public interface BoardMapper {
 
     @Select("""
             <script>
-                SELECT COUNT(id) FROM board
+                SELECT COUNT(b.id) 
+                FROM board b JOIN member m
+                  ON b.writer = m.id
                 <trim prefix="WHERE" prefixOverrides="OR">
                     <if test="target == 'all' or target == 'title'">
                         title LIKE CONCAT('%', #{keyword}, '%')
@@ -76,7 +80,7 @@ public interface BoardMapper {
                         OR content LIKE CONCAT('%', #{keyword}, '%')
                     </if>
                     <if test="target == 'all' or target == 'writer'">
-                        OR writer LIKE CONCAT('%', #{keyword}, '%')
+                        OR m.nickname LIKE CONCAT('%', #{keyword}, '%')
                     </if>
                 </trim>
             </script>
