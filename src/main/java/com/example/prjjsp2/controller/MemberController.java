@@ -55,8 +55,8 @@ public class MemberController {
         } else {
             //관리자 계정이 아닌 경우
             rttr.addFlashAttribute("message", Map.of(
-                    "type", "warning",
-                    "text", "You are not logged in! Please login first!"
+                    "type", "danger",
+                    "text", "Member List limited to Server Administrators only!"
             ));
             return "redirect:/board/list";
         }
