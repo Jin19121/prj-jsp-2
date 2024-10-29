@@ -43,4 +43,31 @@ public interface BoardMapper {
             WHERE id=#{id}
             """)
     int update(Board board);
+
+    @Select("""
+            <script>
+            SELECT *
+            FROM board
+            <trim prefix="WHERE" prefixOverrides="OR">
+                <if test = "target=='all' or target=='title'">
+                    title LIKE CONCAT('%', #{keyword}, '%')
+                </if>
+                <if test = "target=='all' or target=='content'">
+                    OR content LIKE CONCAT('%', #{keyword}, '%')
+                </if>
+                <if test = "target=='all' or target=='writer'">
+                    OR writer LIKE CONCAT('%', #{keyword}, '%')
+                </if>
+            </trim>
+            ORDER BY id DESC
+            LIMIT #{offset}, 10
+            </script>
+            """)
+    List<Board> selectAllPaging(Integer offset, String target, String keyword);
+
+    @Select("""
+            SELECT COUNT(id)
+            FROM board
+            """)
+    Integer countAll();
 }

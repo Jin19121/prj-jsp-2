@@ -32,7 +32,7 @@
                     </th>
                     <th class="d-none d-lg-table-cell">
                         <i class="fa-regular fa-calendar"></i>
-                        작성 일시
+                        Date
                     </th>
                 </tr>
                 </thead>
@@ -55,7 +55,56 @@
     </form>
 </div>
 
-<%--TODO: paginagtion--%>
+
+<%--검색 form--%>
+<div class="container my-3">
+    <form class="row justify-content-center g-1">
+        <div class="col-auto">
+            <select name="target" id="select1" class="form-select">
+                <option value="all">All</option>
+                <option value="title">Title</option>
+                <option value="content">Content</option>
+                <option value="writer">Writer</option>
+            </select>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+            <input type="text" name="keyword" class="form-control">
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-outline-primary h-100">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+    </form>
+</div>
+
+<%--pagination--%>
+<nav class="mt-4">
+    <ul class="pagination justify-content-center">
+        <c:if test="${pageInfo.hasPrev}">
+            <li class="page-item">
+                <a href="/board/list?page=${pageInfo.prev}" class="page-link">
+                    &laquo;
+                </a>
+            </li>
+        </c:if>
+        <c:forEach begin="${pageInfo.leftEnd}"
+                   end="${pageInfo.rightEnd}"
+                   var="pageNo">
+            <li class="page-item ${pageInfo.currentPageNumber == pageNo ? 'active' : ''}">
+                <a href="/board/list?page=${pageNo}" class="page-link">${pageNo}</a>
+            </li>
+        </c:forEach>
+        <c:if test="${pageInfo.hasNext}">
+            <li class="page-item">
+                <a href="/board/list?page=${pageInfo.next}" class="page-link">
+                    &raquo;
+                </a>
+            </li>
+        </c:if>
+
+    </ul>
+</nav>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

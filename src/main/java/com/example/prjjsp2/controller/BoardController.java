@@ -6,13 +6,9 @@ import com.example.prjjsp2.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -51,9 +47,14 @@ public class BoardController {
     }
 
     @GetMapping("list")
-    public void listBoard(Model model) {
-        List<Board> list = service.list();
-        model.addAttribute("boardList", list);
+    public void listBoard(@RequestParam(name = "page", defaultValue = "1") Integer page,
+                          @RequestParam(required = false) String target,
+                          @RequestParam(defaultValue = "") String keyword,
+                          Model model) {
+
+        //한 페이지에 10개 게시물
+        Map<String, Object> result = service.list(page, target, keyword);
+        model.addAllAttributes(result);
     }
 
     @GetMapping("view")
