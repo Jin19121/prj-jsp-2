@@ -14,6 +14,8 @@
 <body>
 <c:import url="/WEB-INF/fragment/navbar.jsp"/>
 
+<%--TODO: 수정 및 삭제 권한 관리--%>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col">
@@ -42,6 +44,7 @@
                 <input type="text" id="inputDate" value="${member.signed}" readonly name="signed"
                        class="form-control">
             </div>
+
             <div class="mb-3 d-flex justify-content-between">
                 <a href="/member/edit?id=${member.id}" class="btn btn-outline-primary">
                     <i class="fa-solid fa-user-pen"></i>

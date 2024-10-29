@@ -97,28 +97,45 @@ public class MemberController {
     }
 
     @GetMapping("edit")
-    public void edit(String id, Model model) {
-        model.addAttribute("member", service.view(id));
+    public String edit(String id, Model model, RedirectAttributes rttr,
+                       @SessionAttribute("loggedIn") Member member) {
+        if (service.hasAccess(id, member)) {
+            model.addAttribute("member", service.view(id));
+            return null;
+        } else {
+            rttr.addFlashAttribute("message", Map.of(
+                    "type", "danger",
+                    "text", "You cannot edit other Members' profile!"
+            ));
+            rttr.addAttribute("id", id);
+            return "redirect:/member/view";
+        }
     }
 
     @PostMapping("edit")
-    public String editProcess(Member member, RedirectAttributes rttr) {
-        try {
-            service.update(member);
-            rttr.addFlashAttribute("message", Map.of(
-                    "type", "success",
-                    "text", "Profile edited successfully!"
-            ));
-            rttr.addAttribute("id", member.getId());
-            return "redirect:/member/view";
-        } catch (DuplicateKeyException e) {
+    public String editProcess(Member member, RedirectAttributes rttr,
+                              @SessionAttribute("loggedIn") Member loggedInMember) {
+        if (service.hasAccess(member.getId(), loggedInMember)) {
+            try {
+                service.update(member);
+                rttr.addFlashAttribute("message", Map.of(
+                        "type", "success",
+                        "text", "Profile edited successfully!"
+                ));
+            } catch (DuplicateKeyException e) {
+                rttr.addFlashAttribute("message", Map.of(
+                        "type", "danger",
+                        "text", "Nickname or e-mail already exists!"
+                ));
+            }
+        } else {
             rttr.addFlashAttribute("message", Map.of(
                     "type", "danger",
-                    "text", "Nickname or e-mail already exists!"
+                    "text", "You cannot edit other Members' profile!"
             ));
-            rttr.addAttribute("id", member.getId());
-            return "redirect:/member/edit";
         }
+        rttr.addAttribute("id", member.getId());
+        return "redirect:/member/view";
     }
 
     @GetMapping("edit-password")
