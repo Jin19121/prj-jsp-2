@@ -19,7 +19,7 @@
         <div class="col-12 col-md-9 col-lg-6">
             <h2 class="my-3">Edit Profile</h2>
 
-            <form action="/member/edit" method="post">
+            <form action="/member/edit" method="post" id="updateForm">
                 <div class="mb-3">
                     <label for="inputId" class="form-label">ID</label>
                     <input type="text" id="inputId" class="form-control" name="id" value="${member.id}">
@@ -39,12 +39,38 @@
                     <input type="text" id="inputEmail" class="form-control" name="email" value="${member.email}">
                 </div>
                 <div class="mb-3">
-                    <button class="btn btn-primary">
+                    <button class="btn btn-primary" type="button"
+                            data-bs-toggle="modal" data-bs-target="#updateCOnfirmModal1">
                         <i class="fa-regular fa-floppy-disk"></i>
                         save edit
                     </button>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="updateConfirmModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                    Confirmation
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Save edited profile of ${member.nickname}?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                </button>
+                <button form="updateForm" class="btn btn-primary">
+                    Save
+                </button>
+            </div>
         </div>
     </div>
 </div>

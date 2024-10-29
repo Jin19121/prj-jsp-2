@@ -78,7 +78,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    close
+                    Close
                 </button>
                 <button form="deleteForm1" class="btn btn-danger">
                     Delete
