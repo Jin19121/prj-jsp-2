@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<c:set value="${not empty sessionScope.loggedIn}" var="loggedIn"/>
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="/board/list">Community</a>
@@ -15,36 +17,46 @@
                         Timeline
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/board/new">
-                        <i class="fa-solid fa-file-pen"></i>
-                        New Post
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/member/register">
-                        <i class="fa-solid fa-user-plus"></i>
-                        Register
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/member/list" class="nav-link">
-                        <i class="fa-regular fa-address-book"></i>
-                        Members
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/member/login" class="nav-link">
-                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                        Log In
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/member/login" class="nav-link">
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                        Log Out
-                    </a>
-                </li>
+                <c:if test="${loggedIn}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/board/new">
+                            <i class="fa-solid fa-file-pen"></i>
+                            New Post
+                        </a>
+                    </li>
+                </c:if>
+                <c:if test="${not loggedIn}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/member/register">
+                            <i class="fa-solid fa-user-plus"></i>
+                            Register
+                        </a>
+                    </li>
+                </c:if>
+                <c:if test="${loggedIn}">
+                    <li class="nav-item">
+                        <a href="/member/list" class="nav-link">
+                            <i class="fa-regular fa-address-book"></i>
+                            Members
+                        </a>
+                    </li>
+                </c:if>
+                <c:if test="${not loggedIn}">
+                    <li class="nav-item">
+                        <a href="/member/login" class="nav-link">
+                            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                            Log In
+                        </a>
+                    </li>
+                </c:if>
+                <c:if test="${loggedIn}">
+                    <li class="nav-item">
+                        <a href="/member/logout" class="nav-link">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Log Out
+                        </a>
+                    </li>
+                </c:if>
             </ul>
         </div>
     </div>
