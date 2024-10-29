@@ -25,14 +25,22 @@ public class MemberController {
 
     @PostMapping("register")
     public String signupProcess(Member member, RedirectAttributes rttr) {
-        service.insertMember(member);
+        try {
+            service.insertMember(member);
 
-        rttr.addFlashAttribute("message", Map.of(
-                "type", "success",
-                "text", "Registered! Welcome to the Crew!"
-        ));
+            rttr.addFlashAttribute("message", Map.of(
+                    "type", "success",
+                    "text", "Registered! Welcome to the Crew!"
+            ));
 
-        return "redirect:/board/list";
+            return "redirect:/board/list";
+        } catch (DuplicateKeyException e) {
+            rttr.addFlashAttribute("message", Map.of(
+                    "type", "danger",
+                    "text", "Nickname or e-mail already exists!"
+            ));
+            return "redirect:/member/register";
+        }
     }
 
     @GetMapping("list")
