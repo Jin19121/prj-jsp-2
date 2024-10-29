@@ -35,7 +35,7 @@ public class MemberController {
                     "text", "Registered! Welcome to the Crew!"
             ));
 
-            return "redirect:/board/list";
+            return "redirect:/member/login";
         } catch (DuplicateKeyException e) {
             rttr.addFlashAttribute("message", Map.of(
                     "type", "danger",
