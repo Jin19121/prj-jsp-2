@@ -63,4 +63,15 @@ public class MemberController {
             return "redirect:/member/view";
         }
     }
+
+    @GetMapping("edit")
+    public void edit(String id, Model model) {
+        model.addAttribute("member", service.view(id));
+    }
+
+    @PostMapping("edit")
+    public String editProcess(Member member) {
+        service.update(member);
+        return null;
+    }
 }

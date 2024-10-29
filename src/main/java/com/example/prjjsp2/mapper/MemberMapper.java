@@ -1,10 +1,7 @@
 package com.example.prjjsp2.mapper;
 
 import com.example.prjjsp2.dto.Member;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -37,4 +34,11 @@ public interface MemberMapper {
             AND password=#{password}
             """)
     int deleteByIdAndPassword(String id, String password);
+
+    @Update("""
+            UPDATE member
+            SET nickname=#{nickname},
+                email=#{email}
+            WHERE id=#{id}""")
+    void update(Member member);
 }

@@ -42,8 +42,13 @@
                 <input type="text" id="inputDate" value="${member.signed}" readonly name="signed"
                        class="form-control">
             </div>
-            <div class="mb-3">
-                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal1">
+            <div class="mb-3 d-flex justify-content-between">
+                <a href="/member/edit?id=${member.id}" class="btn btn-outline-primary">
+                    <i class="fa-solid fa-user-pen"></i>
+                    Edit Profile
+                </a>
+                <button class="btn btn-outline-danger" data-bs-toggle="modal"
+                        data-bs-target="#deleteConfirmModal1">
                     <i class="fa-solid fa-user-minus"></i>
                     Delete Account
                 </button>
