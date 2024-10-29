@@ -1,6 +1,7 @@
 package com.example.prjjsp2.service;
 
 import com.example.prjjsp2.dto.Board;
+import com.example.prjjsp2.dto.Member;
 import com.example.prjjsp2.mapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,8 +15,8 @@ import java.util.List;
 public class BoardService {
     private final BoardMapper mapper;
 
-    public void insert(Board board) {
-        mapper.insert(board);
+    public void insert(Board board, Member member) {
+        mapper.insert(board, member);
     }
 
     public List<Board> list() {

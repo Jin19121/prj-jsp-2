@@ -38,8 +38,9 @@ public class BoardController {
     }
 
     @PostMapping("new")
-    public String newBoard(Board board, RedirectAttributes rttr) {
-        service.insert(board);
+    public String newBoard(Board board, RedirectAttributes rttr,
+                           @SessionAttribute("loggedIn") Member member) {
+        service.insert(board, member);
 
         rttr.addFlashAttribute("message", Map.of(
                 "type", "success",

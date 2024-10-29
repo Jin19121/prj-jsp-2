@@ -28,10 +28,10 @@
                     <label for="inputContent" class="form-label">Content</label>
                     <textarea name="content" id="inputContent" class="form-control" cols="30" rows="10"></textarea>
                 </div>
-                <div class="mb-4">
-                    <label for="inputWriter1" class="form-label">Writer</label>
-                    <input type="text" name="writer" id="inputWriter1" class="form-control"/>
-                </div>
+                <%--                <div class="mb-4">--%>
+                <%--                    <label for="inputWriter1" class="form-label">Writer</label>--%>
+                <%--                    <input type="text" name="writer" id="inputWriter1" class="form-control"/>--%>
+                <%--                </div>--%>
                 <div class="mb-4">
                     <button class="btn btn-light">
                         <i class="fa-solid fa-plus"></i>
