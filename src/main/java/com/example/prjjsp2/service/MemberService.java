@@ -39,4 +39,8 @@ public class MemberService {
         int cnt = mapper.updatePassword(id, oldPassword, newPassword);
         return cnt == 1;
     }
+
+    public Member view(String id, String password) {
+        return mapper.selectByIdAndPassword(id, password);
+    }
 }

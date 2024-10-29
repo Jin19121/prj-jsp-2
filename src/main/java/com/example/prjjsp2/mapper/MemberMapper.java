@@ -49,4 +49,11 @@ public interface MemberMapper {
               AND password = #{oldPassword}
             """)
     int updatePassword(String id, String oldPassword, String newPassword);
+
+    @Select("""
+            SELECT *
+            FROM member
+            WHERE id=#{id}
+              AND password=#{password}""")
+    Member selectByIdAndPassword(String id, String password);
 }

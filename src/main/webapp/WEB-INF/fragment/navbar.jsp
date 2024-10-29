@@ -33,6 +33,18 @@
                         Members
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="/member/login" class="nav-link">
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                        Log In
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/member/login" class="nav-link">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        Log Out
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
