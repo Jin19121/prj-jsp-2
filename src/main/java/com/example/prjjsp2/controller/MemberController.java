@@ -3,6 +3,7 @@ package com.example.prjjsp2.controller;
 import com.example.prjjsp2.dto.Member;
 import com.example.prjjsp2.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -70,8 +71,22 @@ public class MemberController {
     }
 
     @PostMapping("edit")
-    public String editProcess(Member member) {
-        service.update(member);
-        return null;
+    public String editProcess(Member member, RedirectAttributes rttr) {
+        try {
+            service.update(member);
+            rttr.addFlashAttribute("message", Map.of(
+                    "type", "success",
+                    "text", "Profile edited successfully!"
+            ));
+        } catch (DuplicateKeyException e) {
+            rttr.addFlashAttribute("message", Map.of(
+                    "type", "danger",
+                    "text", "Nickname or e-mail already exists!"
+            ));
+            rttr.addAttribute("id", member.getId());
+            return "redirect:/member/edit";
+        }
+        rttr.addAttribute("id", member.getId());
+        return "redirect:/member/view";
     }
 }
