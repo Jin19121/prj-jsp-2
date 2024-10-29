@@ -1,6 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%--로그인 여부--%>
 <c:set value="${not empty sessionScope.loggedIn}" var="loggedIn"/>
+<%--관리자 여부--%>
+<c:set value="${sessionScope.loggedIn.access.contains('admin')}" var="Admin"/>
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
@@ -33,7 +36,7 @@
                         </a>
                     </li>
                 </c:if>
-                <c:if test="${loggedIn}">
+                <c:if test="${loggedIn && Admin}">
                     <li class="nav-item">
                         <a href="/member/list" class="nav-link">
                             <i class="fa-regular fa-address-book"></i>

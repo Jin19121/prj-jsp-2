@@ -48,15 +48,17 @@ public class MemberController {
     @GetMapping("list")
     public String list(Model model, RedirectAttributes rttr,
                        @SessionAttribute(value = "loggedIn", required = false) Member member) {
-        if (member == null) {
+        if (member != null && member.getAccess().contains("admin")) {
+            //관리자 계정으로 로그인한 경우
+            model.addAttribute("memberList", service.list());
+            return null;
+        } else {
+            //관리자 계정이 아닌 경우
             rttr.addFlashAttribute("message", Map.of(
                     "type", "warning",
                     "text", "You are not logged in! Please login first!"
             ));
-            return "redirect:/member/login";
-        } else {
-            model.addAttribute("memberList", service.list());
-            return null;
+            return "redirect:/board/list";
         }
     }
 
