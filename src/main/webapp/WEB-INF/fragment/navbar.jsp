@@ -41,6 +41,14 @@
                         </a>
                     </li>
                 </c:if>
+                <c:if test="${loggedIn}">
+                    <li class="nav-item">
+                        <a href="/member/view?id=${sessionScope.loggedIn.id}" class="nav-link">
+                            <i class="fa-regular fa-address-card"></i>
+                                ${sessionScope.loggedIn.nickname} Profile
+                        </a>
+                    </li>
+                </c:if>
                 <c:if test="${not loggedIn}">
                     <li class="nav-item">
                         <a href="/member/login" class="nav-link">
@@ -57,6 +65,7 @@
                         </a>
                     </li>
                 </c:if>
+
             </ul>
         </div>
     </div>
