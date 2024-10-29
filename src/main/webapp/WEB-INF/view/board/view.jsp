@@ -40,14 +40,12 @@
                 <label for="inputDate" class="form-label">Date</label>
                 <input readonly type="datetime-local" value="${board.date}" id="inputDate" class="form-control"/>
             </div>
-
             <div class="mb-3 d-flex justify-content-between">
-                <a class="btn btn-outline-success btn-light" href="/board/edit?id=${board.id}">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                    edit
-                </a>
-
                 <c:if test="${permitted}">
+                    <a class="btn btn-outline-success btn-light" href="/board/edit?id=${board.id}">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        edit
+                    </a>
                     <button class="btn btn-outline-danger btn-light" data-bs-toggle="modal"
                             data-bs-target="#deleteConfirmModal1">
                         <i class="fa-solid fa-trash-can"></i>

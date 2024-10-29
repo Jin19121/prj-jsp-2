@@ -37,7 +37,12 @@ public class BoardService {
         }
     }
 
-    public void update(Board board) {
-        mapper.update(board);
+    public void update(Board board, Member member) {
+        Board board1 = mapper.selectById(board.getId());
+        if (board1.getWriter().equals(member.getId()) || board1.getWriter().equals(member.getNickname())) {
+            mapper.update(board);
+        } else {
+            throw new RuntimeException("You do not have permission to update this board");
+        }
     }
 }

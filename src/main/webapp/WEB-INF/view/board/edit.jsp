@@ -28,10 +28,10 @@
                     <textarea name="content" id="inputContent" class="form-control"
                               cols="30" rows="10">${board.content}</textarea>
                 </div>
-                <div class="mb-4">
-                    <label for="inputWriter1" class="form-label">Writer</label>
-                    <input type="text" name="writer" value="${board.writer}" id="inputWriter1" class="form-control"/>
-                </div>
+                <%--                <div class="mb-4">--%>
+                <%--                    <label for="inputWriter1" class="form-label">Writer</label>--%>
+                <%--                    <input type="text" name="writer" value="${board.writer}" id="inputWriter1" class="form-control"/>--%>
+                <%--                </div>--%>
 
                 <div class="mb-4">
                     <button class="btn btn-outline-success btn-light" data-bs-toggle="modal"

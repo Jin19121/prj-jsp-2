@@ -84,19 +84,38 @@ public class BoardController {
     }
 
     @GetMapping("edit")
-    public void editBoard(Integer id, Model model) {
+    public String editBoard(Integer id, Model model, RedirectAttributes rttr,
+                            @SessionAttribute("loggedIn") Member member) {
         Board board = service.view(id);
-        model.addAttribute("board", board);
+
+        if (board.getWriter().equals(member.getId()) || board.getWriter().equals(member.getNickname())) {
+            model.addAttribute("board", board);
+            return null;
+        } else {
+            rttr.addFlashAttribute("message", Map.of(
+                    "type", "danger",
+                    "text", "You do not have permission to edit this post!"
+            ));
+            return "redirect:/member/login";
+        }
     }
 
     @PostMapping("edit")
-    public String editBoard(Board board, RedirectAttributes rttr) {
-        service.update(board);
+    public String editBoard(Board board, RedirectAttributes rttr,
+                            @SessionAttribute("loggedIn") Member member) {
+        try {
+            service.update(board, member);
 
-        rttr.addFlashAttribute("message", Map.of(
-                "type", "success",
-                "text", "Post #" + board.getId() + " Edited"
-        ));
+            rttr.addFlashAttribute("message", Map.of(
+                    "type", "success",
+                    "text", "Post #" + board.getId() + " Edited"
+            ));
+        } catch (RuntimeException e) {
+            rttr.addFlashAttribute("message", Map.of(
+                    "type", "danger",
+                    "text", "You do not have permission to edit this post!"
+            ));
+        }
         rttr.addAttribute("id", board.getId());
         return "redirect:/board/view";
     }
