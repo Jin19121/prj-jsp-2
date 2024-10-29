@@ -6,7 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -18,8 +20,39 @@ public class MemberService {
         mapper.insert(member);
     }
 
-    public List<Member> list() {
-        return mapper.selectAll();
+    public Map<String, Object> list(Integer page, String search, String keyword) {
+        Integer offset = (page - 1) * 10;
+        List<Member> list = mapper.selectAllPaging(offset, search, keyword);
+
+        Map<String, Object> map = new HashMap<>();
+
+        Integer countAll = mapper.countAll(search, keyword);
+        Integer last = (countAll - 1) / 10 + 1;
+        Integer right = ((page - 1) / 10 + 1) * 10;
+        Integer left = right - 9;
+        Integer next = page + 1;
+        Integer prev = page - 1;
+
+        Boolean hasNext = next <= last;
+        Boolean hasPrev = prev > 0;
+
+        right = Math.min(right, last);
+
+        Map<String, Object> pageMap = new HashMap<>();
+
+        pageMap.put("hasNext", hasNext);
+        pageMap.put("hasPrev", hasPrev);
+        pageMap.put("next", next);
+        pageMap.put("prev", prev);
+        pageMap.put("left", left);
+        pageMap.put("right", right);
+        pageMap.put("last", last);
+        pageMap.put("current", page);
+
+        map.put("pageMap", pageMap);
+        map.put("memberList", list);
+
+        return map;
     }
 
     public Member view(String id) {

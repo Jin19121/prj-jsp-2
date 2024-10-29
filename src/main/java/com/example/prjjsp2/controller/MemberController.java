@@ -7,10 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Map;
@@ -46,11 +43,16 @@ public class MemberController {
     }
 
     @GetMapping("list")
-    public String list(Model model, RedirectAttributes rttr,
-                       @SessionAttribute(value = "loggedIn", required = false) Member member) {
+    public String list(@RequestParam(name = "page", defaultValue = "1") Integer page,
+                       @RequestParam(required = false) String search,
+                       @RequestParam(required = false) String keyword,
+                       @SessionAttribute(value = "loggedIn", required = false) Member member,
+                       Model model, RedirectAttributes rttr) {
+        model.addAttribute("memberList", member);
         if (member != null && member.getAccess().contains("admin")) {
             //관리자 계정으로 로그인한 경우
-            model.addAttribute("memberList", service.list());
+            Map<String, Object> result = service.list(page, search, keyword);
+            model.addAllAttributes(result);
             return null;
         } else {
             //관리자 계정이 아닌 경우

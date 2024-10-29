@@ -63,4 +63,29 @@ public interface MemberMapper {
             WHERE id = #{id}
             """)
     List<String> selectAccessById(String id);
+
+    @Select("""
+            <script>
+                SELECT *
+                FROM member
+                <trim prefix="WHERE" prefixOverrides="OR">
+                    <if test="search =='all' or search =='id'">
+                        id LIKE CONCAT('%', #{keyword}, '%')
+                    </if>
+                    <if test="search =='all' or search =='nickname'">
+                        OR nickname LIKE CONCAT('%', #{keyword}, '%')
+                    </if>
+                    <if test="search =='all' or search =='email'">
+                        OR email LIKE CONCAT('%', #{keyword}, '%')
+                    </if>
+                </trim>
+                ORDER BY signed
+                LIMIT #{offset}, 10
+            </script>
+            """)
+    List<Member> selectAllPaging(Integer offset, String search, String keyword);
+
+    @Select("""
+            SELECT COUNT(id) FROM member""")
+    Integer countAll(String search, String keyword);
 }
