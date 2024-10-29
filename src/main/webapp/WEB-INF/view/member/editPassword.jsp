@@ -20,10 +20,10 @@
             <h2 class="my-3">Update Password</h2>
 
             <form method="post">
-                <div class="mb-3">
-                    <label for="inputId" class="form-label">ID</label>
-                    <input type="text" id="inputId" value="${id}" readonly name="id" class="form-control">
-                </div>
+                <%--                <div class="mb-3">--%>
+                <%--                    <label for="inputId" class="form-label">ID</label>--%>
+                <%--                    <input type="text" id="inputId" value="${id}" readonly name="id" class="form-control">--%>
+                <%--                </div>--%>
                 <div class="mb-3">
                     <label for="input1" class="form-label">Old Password</label>
                     <input id="input1" name="oldPassword" type="text" class="form-control">

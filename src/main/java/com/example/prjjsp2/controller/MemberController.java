@@ -139,26 +139,46 @@ public class MemberController {
     }
 
     @GetMapping("edit-password")
-    public String editPassword(String id, Model model) {
-        model.addAttribute("id", id);
-        return "/member/editPassword";
+    public String editPassword(String id, Model model, RedirectAttributes rttr,
+                               @SessionAttribute("loggedIn") Member member) {
+        if (service.hasAccess(id, member)) {
+            model.addAttribute("id", id);
+            return "/member/editPassword";
+        } else {
+            rttr.addFlashAttribute("message", Map.of(
+                    "type", "danger",
+                    "text", "You cannot change other Members' password!"
+            ));
+            rttr.addAttribute("id", id);
+            return "redirect:/member/view";
+        }
     }
 
     @PostMapping("edit-password")
     public String editPasswordProcess(String id,
                                       String oldPassword,
                                       String newPassword,
-                                      RedirectAttributes rttr) {
-        if (service.updatePassword(id, oldPassword, newPassword)) {
-            rttr.addFlashAttribute("message", Map.of("type", "success",
-                    "text", "Password edited successfully!"));
+                                      RedirectAttributes rttr,
+                                      @SessionAttribute("loggedIn") Member member) {
+        if (service.hasAccess(id, member)) {
+            if (service.updatePassword(id, oldPassword, newPassword)) {
+                rttr.addFlashAttribute("message", Map.of("type", "success",
+                        "text", "Password edited successfully!"));
+                rttr.addAttribute("id", id);
+                return "redirect:/member/view";
+            } else {
+                rttr.addFlashAttribute("message", Map.of("type", "warning",
+                        "text", "Incorrect Original Password!"));
+                rttr.addAttribute("id", id);
+                return "redirect:/member/edit-password";
+            }
+        } else {
+            rttr.addFlashAttribute("message", Map.of(
+                    "type", "warning",
+                    "text", "You cannot change other Members' password!"
+            ));
             rttr.addAttribute("id", id);
             return "redirect:/member/view";
-        } else {
-            rttr.addFlashAttribute("message", Map.of("type", "warning",
-                    "text", "Unable to change password!"));
-            rttr.addAttribute("id", id);
-            return "redirect:/member/edit-password";
         }
     }
 
