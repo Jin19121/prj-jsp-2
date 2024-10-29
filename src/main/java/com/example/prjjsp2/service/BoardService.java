@@ -28,8 +28,13 @@ public class BoardService {
         return mapper.selectById(id);
     }
 
-    public void delete(Integer id) {
-        mapper.deleteById(id);
+    public void delete(Integer id, Member member) {
+        Board board = mapper.selectById(id);
+        if (board.getWriter().equals(member.getId()) || board.getWriter().equals(member.getNickname())) {
+            mapper.deleteById(id);
+        } else {
+            throw new RuntimeException("You do not have permission to delete this board");
+        }
     }
 
     public void update(Board board) {

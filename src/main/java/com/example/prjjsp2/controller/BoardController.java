@@ -63,14 +63,24 @@ public class BoardController {
     }
 
     @PostMapping("delete")
-    public String deleteBoard(Integer id, RedirectAttributes rttr) {
-        service.delete(id);
+    public String deleteBoard(Integer id, RedirectAttributes rttr,
+                              @SessionAttribute("loggedIn") Member member) {
+        try {
+            service.delete(id, member);
 
-        rttr.addFlashAttribute("message", Map.of(
-                "type", "warning",
-                "text", "Post #" + id + " Deleted"
-        ));
-        return "redirect:/board/list";
+            rttr.addFlashAttribute("message", Map.of(
+                    "type", "warning",
+                    "text", "Post #" + id + " Deleted"
+            ));
+            return "redirect:/board/list";
+        } catch (RuntimeException e) {
+            rttr.addFlashAttribute("message", Map.of(
+                    "type", "danger",
+                    "text", "You do not have permission to delete this post!"
+            ));
+            rttr.addAttribute("id", id);
+            return "redirect:/board/view";
+        }
     }
 
     @GetMapping("edit")
