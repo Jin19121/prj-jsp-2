@@ -86,6 +86,8 @@ public class MemberController {
                     "type", "success",
                     "text", "Profile edited successfully!"
             ));
+            rttr.addAttribute("id", member.getId());
+            return "redirect:/member/view";
         } catch (DuplicateKeyException e) {
             rttr.addFlashAttribute("message", Map.of(
                     "type", "danger",
@@ -94,7 +96,6 @@ public class MemberController {
             rttr.addAttribute("id", member.getId());
             return "redirect:/member/edit";
         }
-        rttr.addAttribute("id", member.getId());
-        return "redirect:/member/view";
+
     }
 }
