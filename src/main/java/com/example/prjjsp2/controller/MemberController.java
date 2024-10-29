@@ -96,6 +96,29 @@ public class MemberController {
             rttr.addAttribute("id", member.getId());
             return "redirect:/member/edit";
         }
+    }
 
+    @GetMapping("edit-password")
+    public String editPassword(String id, Model model) {
+        model.addAttribute("id", id);
+        return "/member/editPassword";
+    }
+
+    @PostMapping("edit-password")
+    public String editPasswordProcess(String id,
+                                      String oldPassword,
+                                      String newPassword,
+                                      RedirectAttributes rttr) {
+        if (service.updatePassword(id, oldPassword, newPassword)) {
+            rttr.addFlashAttribute("message", Map.of("type", "success",
+                    "text", "Password edited successfully!"));
+            rttr.addAttribute("id", id);
+            return "redirect:/member/view";
+        } else {
+            rttr.addFlashAttribute("message", Map.of("type", "warning",
+                    "text", "Unable to change password!"));
+            rttr.addAttribute("id", id);
+            return "redirect:/member/edit-password";
+        }
     }
 }

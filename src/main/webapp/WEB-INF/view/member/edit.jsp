@@ -26,8 +26,13 @@
                 </div>
                 <div class="mb-3">
                     <label for="inputPassword" class="form-label">Password</label>
-                    <input type="text" id="inputPassword" class="form-control" name="password"
-                           value="${member.password}">
+                    <div class="input-group">
+                        <input value="${member.password}" readonly id="inputPassword" name="password" type="text"
+                               class="form-control">
+                        <a href="/member/edit-password?id=${member.id}" class="btn btn-outline-secondary">
+                            Update
+                        </a>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="inputNickname" class="form-label">Nickname</label>

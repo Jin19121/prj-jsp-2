@@ -34,4 +34,9 @@ public class MemberService {
     public void update(Member member) {
         mapper.update(member);
     }
+
+    public boolean updatePassword(String id, String oldPassword, String newPassword) {
+        int cnt = mapper.updatePassword(id, oldPassword, newPassword);
+        return cnt == 1;
+    }
 }
