@@ -38,7 +38,7 @@
                 <textarea readonly name="content" id="inputContent" class="form-control" cols="30"
                           rows="11">${board.content}</textarea>
             </div>
-            <div class="mb-4">
+            <div class="mb-3">
                 <label for="inputWriter1" class="form-label">Writer</label>
                 <input readonly type="text" name="board.writerName" id="inputWriter1" class="form-control"
                        value="${board.writerName}">
@@ -47,21 +47,27 @@
                 <label for="inputDate" class="form-label">Date</label>
                 <input readonly type="datetime-local" value="${board.date}" id="inputDate" class="form-control"/>
             </div>
-            <div class="mb-3 mx-1 d-flex justify-content-between">
-                <c:if test="${permitted || Admin}">
+            <c:if test="${permitted || Admin}">
+                <div class="mb-3 mx-1 d-flex justify-content-between">
                     <a class="btn btn-outline-success btn-light" href="/board/edit?id=${board.id}">
                         <i class="fa-solid fa-pen-to-square"></i>
                         edit
                     </a>
                     <button class="btn btn-outline-danger btn-light" data-bs-toggle="modal"
                             data-bs-target="#deleteConfirmModal1">
-                        <i class="fa-solid fa-trash-can"></i>
                         delete
+                        <i class="fa-solid fa-trash-can"></i>
                     </button>
                     <form id="deleteForm1" class="d-none" action="/board/delete" method="post">
                         <input type="hidden" name="id" value="${board.id}">
                     </form>
-                </c:if>
+                </div>
+            </c:if>
+            <div class="mx-1 my-3 d-flex justify-content-end">
+                <a class="btn btn-sm btn-outline-secondary btn-light" href="/board/list">
+                    Go back
+                    <i class="fa-solid fa-arrow-rotate-left"></i>
+                </a>
             </div>
         </div>
     </div>
