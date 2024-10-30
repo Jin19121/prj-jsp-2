@@ -38,9 +38,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${boardList}" var="board">
+                <c:forEach items="${boardList}" var="board" varStatus="status">
                     <tr>
-                        <td>${board.id}</td>
+                        <td>${status.count}</td>
                         <td>
                             <a href="/board/view?id=${board.id}">
                                     ${board.title}
