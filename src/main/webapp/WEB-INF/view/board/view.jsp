@@ -15,7 +15,7 @@
 <c:import url="/WEB-INF/fragment/navbar.jsp"/>
 
 <%--삭제/수정 권한--%>
-<c:set value="${sessionScope.loggedIn.id == board.writer||sessionScope.loggedIn.nickname==board.writer}"
+<c:set value="${sessionScope.loggedIn.id == 'admin' || sessionScope.loggedIn.id == board.writer||sessionScope.loggedIn.nickname==board.writer}"
        var="permitted"/>
 
 <div class="container text-bg-primary">
@@ -29,7 +29,7 @@
             <div class="mb-3">
                 <label for="inputContent" class="form-label">Content</label>
                 <textarea readonly name="content" id="inputContent" class="form-control" cols="30"
-                          rows="10">${board.content}</textarea>
+                          rows="11">${board.content}</textarea>
             </div>
             <div class="mb-4">
                 <label for="inputWriter1" class="form-label">Writer</label>
