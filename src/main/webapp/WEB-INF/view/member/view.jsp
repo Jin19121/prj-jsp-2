@@ -20,7 +20,7 @@
 <div class="container text-bg-primary">
     <div class="row justify-content-center">
         <div class="col-12 col-md-9 col-lg-6">
-            <h2 class="my-3 mx-3">${member.nickname}'s Profile</h2>
+            <h2 class="my-3 border border-primary-subtle rounded p-3">${member.nickname}'s Profile</h2>
             <div class="mb-3">
                 <label for="inputId" class="form-label">ID</label>
                 <input type="text" id="inputId" value="${member.id}" readonly name="id" class="form-control">

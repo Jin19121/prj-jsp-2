@@ -17,7 +17,7 @@
 <div class="container text-bg-primary">
     <div class="row justify-content-center">
         <div class="col-12 col-md-9 col-lg-6">
-            <h2 class="my-3">Edit Profile</h2>
+            <h2 class="my-3 border border-primary-subtle rounded p-3">Edit Profile</h2>
 
             <form action="/member/edit" method="post" id="updateForm">
                 <div class="mb-3">
@@ -43,7 +43,7 @@
                     <label for="inputEmail" class="form-label">E-mail</label>
                     <input type="text" id="inputEmail" class="form-control" name="email" value="${member.email}">
                 </div>
-                <div class="mb-3 mx-1 d-flex justify-content-between">
+                <div class="mb-4 mx-1 d-flex justify-content-between">
                     <button class="btn btn-outline-success btn-light" type="button"
                             data-bs-toggle="modal" data-bs-target="#updateCOnfirmModal1">
                         <i class="fa-regular fa-floppy-disk"></i>

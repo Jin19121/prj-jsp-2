@@ -24,7 +24,7 @@
 <div class="container text-bg-primary">
     <div class="row justify-content-center">
         <div class="col-12 col-md-9 col-lg-6">
-            <h2 class="my-3 mx-1">${board.title}</h2>
+            <h2 class="my-3 border border-primary-subtle rounded p-3">${board.title}</h2>
             <div class="mb-3">
                 <label for="inputTitle1" class="form-label">Post ID#</label>
                 <input readonly type="text" id="inputTitle1" value="${board.id}" class="form-control">

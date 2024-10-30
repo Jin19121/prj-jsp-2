@@ -26,7 +26,10 @@
                     <th>
                         <i class="fa-solid fa-hashtag"></i>
                     </th>
-                    <th class="w-50">Title</th>
+                    <th class="w-60">
+                        Title
+                        <i class="fa-solid fa-comment"></i>
+                    </th>
                     <th>
                         Writer
                         <i class="fa-solid fa-user-pen"></i>

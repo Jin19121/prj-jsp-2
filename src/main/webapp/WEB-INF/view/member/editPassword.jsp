@@ -14,29 +14,33 @@
 <body>
 <c:import url="/WEB-INF/fragment/navbar.jsp"/>
 
-<div class="container">
+<div class="container text-bg-primary">
     <div class="row justify-content-center">
         <div class="col-12 col-md-9 col-lg-6">
-            <h2 class="my-3">Update Password</h2>
+            <h2 class="my-3 border border-primary-subtle rounded p-3">Update Password</h2>
 
             <form method="post">
-                <%--                <div class="mb-3">--%>
-                <%--                    <label for="inputId" class="form-label">ID</label>--%>
-                <%--                    <input type="text" id="inputId" value="${id}" readonly name="id" class="form-control">--%>
-                <%--                </div>--%>
+                <div class="mb-3">
+                    <label for="inputId" class="form-label">ID</label>
+                    <input type="text" id="inputId" value="${id}" readonly name="id" class="form-control">
+                </div>
                 <div class="mb-3">
                     <label for="input1" class="form-label">Old Password</label>
                     <input id="input1" name="oldPassword" type="text" class="form-control">
                 </div>
-                <div class="mb-3">
+                <div class="mb-4">
                     <label for="input2" class="form-label">New Password</label>
                     <input id="input2" name="newPassword" type="text" class="form-control">
                 </div>
-                <div class="mb-3">
-                    <button class="btn btn-primary">
+                <div class="mb-4 mx-1 d-flex justify-content-between">
+                    <button class="btn btn-light btn-outline-success">
                         <i class="fa-solid fa-pen-to-square"></i>
                         Update Password
                     </button>
+                    <a href="/member/edit?id=${id}" class="btn btn-outline-secondary btn-light">
+                        Cancel
+                        <i class="fa-solid fa-xmark"></i>
+                    </a>
                 </div>
             </form>
         </div>
