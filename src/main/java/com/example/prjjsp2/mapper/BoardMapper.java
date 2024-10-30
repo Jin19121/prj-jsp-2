@@ -86,4 +86,9 @@ public interface BoardMapper {
             </script>
             """)
     Integer countAll(String target, String keyword);
+
+    @Delete("""
+            DELETE FROM board
+            WHERE writer=#{memberId}""")
+    int deleteByMemberId(String memberId);
 }
