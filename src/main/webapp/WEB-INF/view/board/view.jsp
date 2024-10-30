@@ -15,8 +15,10 @@
 <c:import url="/WEB-INF/fragment/navbar.jsp"/>
 
 <%--삭제/수정 권한--%>
-<c:set value="${sessionScope.loggedIn.id == 'admin' || sessionScope.loggedIn.id == board.writer||sessionScope.loggedIn.nickname==board.writer}"
+<c:set value="${sessionScope.loggedIn.id == 'admin' || sessionScope.loggedIn.id == board.writer}"
        var="permitted"/>
+<%--관리자 여부--%>
+<c:set value="${sessionScope.loggedIn.access.contains('admin')}" var="Admin"/>
 
 <div class="container text-bg-primary">
     <div class="row justify-content-center">
@@ -41,7 +43,7 @@
                 <input readonly type="datetime-local" value="${board.date}" id="inputDate" class="form-control"/>
             </div>
             <div class="mb-3 mx-1 d-flex justify-content-between">
-                <c:if test="${permitted}">
+                <c:if test="${permitted || Admin}">
                     <a class="btn btn-outline-success btn-light" href="/board/edit?id=${board.id}">
                         <i class="fa-solid fa-pen-to-square"></i>
                         edit
@@ -61,7 +63,7 @@
 </div>
 
 <!-- Modal -->
-<c:if test="${permitted}">
+<c:if test="${permitted || Admin}">
     <div class="modal fade" id="deleteConfirmModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog">
