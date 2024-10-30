@@ -46,7 +46,7 @@
                        class="form-control">
             </div>
 
-            <div class="mb-3 d-flex justify-content-between">
+            <div class="mb-3 mx-1 d-flex justify-content-between">
                 <c:if test="${permitted}">
                     <a href="/member/edit?id=${member.id}" class="btn btn-outline-success btn-light">
                         <i class="fa-solid fa-user-pen"></i>

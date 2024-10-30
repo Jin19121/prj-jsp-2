@@ -43,7 +43,7 @@
                     <label for="inputEmail" class="form-label">E-mail</label>
                     <input type="text" id="inputEmail" class="form-control" name="email" value="${member.email}">
                 </div>
-                <div class="mb-3 d-flex justify-content-between">
+                <div class="mb-3 mx-1 d-flex justify-content-between">
                     <button class="btn btn-outline-success btn-light" type="button"
                             data-bs-toggle="modal" data-bs-target="#updateCOnfirmModal1">
                         <i class="fa-regular fa-floppy-disk"></i>

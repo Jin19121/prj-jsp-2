@@ -20,9 +20,9 @@
     <form action="" class="row justify-content-center">
         <div class="col">
             <h2 class="my-3">Community Timeline</h2>
-            <table class="table table-striped">
+            <table class="table table-hover">
                 <thead>
-                <tr>
+                <tr class="table-primary">
                     <th>
                         <i class="fa-solid fa-hashtag"></i>
                     </th>

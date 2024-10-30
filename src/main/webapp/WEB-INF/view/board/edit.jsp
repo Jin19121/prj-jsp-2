@@ -33,7 +33,7 @@
                 <%--                    <input type="text" name="writer" value="${board.writer}" id="inputWriter1" class="form-control"/>--%>
                 <%--                </div>--%>
 
-                <div class="mb-4 mb-3 d-flex justify-content-between">
+                <div class="mb-4 mx-1 d-flex justify-content-between">
                     <button class="btn btn-outline-success btn-light" data-bs-toggle="modal"
                             data-bs-target="#updateConfirmModal" type="button">
                         <i class="fa-solid fa-pen-to-square"></i>

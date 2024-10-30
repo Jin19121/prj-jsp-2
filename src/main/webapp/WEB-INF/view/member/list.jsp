@@ -18,9 +18,9 @@
     <div class="row justify-content-center">
         <div class="col-12 col-md-9 col-lg-6">
             <h2 class="my-3">Members</h2>
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
-                <tr>
+                <tr class="table-success">
                     <th>ID</th>
                     <th class="w-50">Nickname</th>
                     <th>Registered Date</th>
@@ -29,10 +29,12 @@
                 <tbody>
                 <c:forEach items="${memberList}" var="m">
                     <tr>
+                        <td>${m.id}</td>
                         <td>
-                            <a href="/member/view?id=${m.id}">${m.id}</a>
+                            <a href="/member/view?id=${m.id}">
+                                    ${m.nickname}
+                            </a>
                         </td>
-                        <td>${m.nickname}</td>
                         <td>${m.signed}</td>
                     </tr>
                 </c:forEach>

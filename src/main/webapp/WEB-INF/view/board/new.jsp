@@ -24,7 +24,7 @@
                     <label for="inputTitle1" class="form-label">Title</label>
                     <input type="text" id="inputTitle1" name="title" class="form-control">
                 </div>
-                <div class="mb-3">
+                <div class="mb-4">
                     <label for="inputContent" class="form-label">Content</label>
                     <textarea name="content" id="inputContent" class="form-control" cols="30" rows="10"></textarea>
                 </div>
@@ -32,11 +32,15 @@
                 <%--                    <label for="inputWriter1" class="form-label">Writer</label>--%>
                 <%--                    <input type="text" name="writer" id="inputWriter1" class="form-control"/>--%>
                 <%--                </div>--%>
-                <div class="mb-4">
-                    <button class="btn btn-light btn-outline-success">
+                <div class="mb-4 mx-1 d-flex justify-content-between">
+                    <button class="btn btn-light btn-outline-primary">
                         <i class="fa-solid fa-plus"></i>
-                        저장
+                        Post
                     </button>
+                    <a href="/board/list" class="btn btn-outline-secondary btn-light">
+                        Cancel
+                        <i class="fa-solid fa-xmark"></i>
+                    </a>
                 </div>
             </form>
         </div>

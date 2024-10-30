@@ -40,7 +40,7 @@
                 <label for="inputDate" class="form-label">Date</label>
                 <input readonly type="datetime-local" value="${board.date}" id="inputDate" class="form-control"/>
             </div>
-            <div class="mb-3 d-flex justify-content-between">
+            <div class="mb-3 mx-1 d-flex justify-content-between">
                 <c:if test="${permitted}">
                     <a class="btn btn-outline-success btn-light" href="/board/edit?id=${board.id}">
                         <i class="fa-solid fa-pen-to-square"></i>
