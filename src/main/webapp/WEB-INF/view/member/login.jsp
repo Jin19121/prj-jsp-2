@@ -30,7 +30,7 @@
                     <input type="password" name="password" id="inputPassword" class="form-control">
                 </div>
                 <div class="mb-2 mx-1">
-                    <button class="btn btn-outline-primary">
+                    <button class="btn btn-primary">
                         <i class="fa-solid fa-arrow-right-to-bracket"></i>
                         Sign in
                     </button>

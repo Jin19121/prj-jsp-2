@@ -21,10 +21,10 @@
 <%--관리자 여부--%>
 <c:set value="${sessionScope.loggedIn.access.contains('admin')}" var="Admin"/>
 
-<div class="container text-bg-primary">
+<div class="container text-bg-success">
     <div class="row justify-content-center">
         <div class="col-12 col-md-9 col-lg-6">
-            <h2 class="my-3 border border-primary-subtle rounded p-3">${member.nickname}'s Profile</h2>
+            <h2 class="my-3 border border-success-subtle rounded p-3">${member.nickname}'s Profile</h2>
             <div class="mb-3">
                 <label for="inputId" class="form-label">ID</label>
                 <input type="text" id="inputId" value="${member.id}" readonly name="id" class="form-control">
@@ -50,7 +50,7 @@
                        class="form-control">
             </div>
             <c:if test="${permitted}">
-                <div class="mb-3 mx-1 d-flex justify-content-between">
+                <div class="mb-4 mx-1 d-flex justify-content-between">
                     <a href="/member/edit?id=${member.id}" class="btn btn-outline-success btn-light">
                         <i class="fa-solid fa-user-pen"></i>
                         Edit Profile

@@ -14,10 +14,10 @@
 <body>
 <c:import url="/WEB-INF/fragment/navbar.jsp"/>
 
-<div class="container text-bg-primary">
+<div class="container text-bg-success">
     <div class="row justify-content-center">
         <div class="col-12 col-md-9 col-lg-6">
-            <h2 class="my-3 border border-primary-subtle rounded p-3">Edit Profile</h2>
+            <h2 class="my-3 border border-success-subtle rounded p-3">Edit Profile</h2>
 
             <form action="/member/edit" method="post" id="updateForm">
                 <div class="mb-3">

@@ -63,7 +63,7 @@
                     </form>
                 </div>
             </c:if>
-            <div class="mx-1 my-3 d-flex justify-content-end">
+            <div class="mx-1 mb-3 d-flex justify-content-end">
                 <a class="btn btn-sm btn-outline-secondary btn-light" href="/board/list">
                     To list
                     <i class="fa-solid fa-list"></i>
