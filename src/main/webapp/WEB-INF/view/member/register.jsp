@@ -31,14 +31,14 @@
                     <label for="inputNickname" class="form-label">Nickname</label>
                     <input type="text" id="inputNickname" class="form-control" name="nickname">
                 </div>
-                <div class="mb-3">
+                <div class="mb-4">
                     <label for="inputEmail" class="form-label">E-mail</label>
                     <input type="text" id="inputEmail" class="form-control" name="email">
                 </div>
                 <div class="mb-3">
-                    <button class="btn btn-primary">
+                    <button class="btn btn-success">
                         <i class="fa-solid fa-user-plus"></i>
-                        가입
+                        Register
                     </button>
                 </div>
             </form>

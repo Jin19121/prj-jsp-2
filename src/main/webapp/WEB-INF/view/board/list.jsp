@@ -59,7 +59,7 @@
     <c:if test="${loggedIn}">
         <div class="row justify-content-center">
             <div class="col text-end">
-                <form action="/board/new">
+                <form action="/board/new" class="mx-3">
                     <button class="btn btn-primary btn-sm">
                         New Post
                         <i class="fa-solid fa-file-circle-plus"></i>
