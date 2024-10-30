@@ -64,7 +64,7 @@
                     <li class="nav-item">
                         <a href="/member/logout" class="nav-link">
                             <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                            Sing out
+                            Sign out
                         </a>
                     </li>
                 </c:if>
