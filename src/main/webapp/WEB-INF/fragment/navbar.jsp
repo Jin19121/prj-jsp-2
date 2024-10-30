@@ -4,6 +4,9 @@
 <c:set value="${not empty sessionScope.loggedIn}" var="loggedIn"/>
 <%--관리자 여부--%>
 <c:set value="${sessionScope.loggedIn.access.contains('admin')}" var="Admin"/>
+<%--현재 창의 id 파라미터가 관리자의 아이디인가--%>
+<c:set value="${param.id==sessionScope.loggedIn.id}" var="viewingAdmin"/>
+
 
 <div class="mb-2">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -17,14 +20,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link ${param.active == 'list' ? 'active' : ''}" href="/board/list">
+                        <a class="nav-link <%= "list".equals(request.getParameter("active")) ? "active text-primary fw-bold bg-light" : "" %>"
+                           href="/board/list">
                             <i class="fa-solid fa-list"></i>
                             Timeline
                         </a>
                     </li>
                     <c:if test="${loggedIn}">
                         <li class="nav-item">
-                            <a class="nav-link ${param.active == 'new' ? 'active' : ''}" href="/board/new">
+                            <a class="nav-link <%= "new".equals(request.getParameter("active")) ? "active text-primary fw-bold bg-light" : "" %>"
+                               href="/board/new">
                                 <i class="fa-solid fa-file-pen"></i>
                                 New Post
                             </a>
@@ -32,7 +37,8 @@
                     </c:if>
                     <c:if test="${not loggedIn}">
                         <li class="nav-item">
-                            <a class="nav-link ${param.active == 'register' ? 'active' : ''}" href="/member/register">
+                            <a class="nav-link <%= "register".equals(request.getParameter("active")) ? "active text-primary fw-bold bg-light" : "" %>"
+                               href="/member/register">
                                 <i class="fa-solid fa-user-plus"></i>
                                 Register
                             </a>
@@ -40,7 +46,8 @@
                     </c:if>
                     <c:if test="${loggedIn && Admin}">
                         <li class="nav-item">
-                            <a href="/member/list" class="nav-link ${param.active == 'list' ? 'active' : ''}">
+                            <a href="/member/mlist"
+                               class="nav-link <%= "mlist".equals(request.getParameter("active")) ? "active text-primary fw-bold bg-light" : "" %>">
                                 <i class="fa-regular fa-address-book"></i>
                                 Members
                             </a>
@@ -48,16 +55,27 @@
                     </c:if>
                     <c:if test="${loggedIn}">
                         <li class="nav-item">
-                            <a href="/member/view?id=${sessionScope.loggedIn.id}"
-                               class="nav-link ${param.active == 'view' ? 'active' : ''}">
-                                <i class="fa-solid fa-user"></i>
-                                Your Profile
-                            </a>
+                            <c:choose>
+                                <c:when test="${viewingAdmin}">
+                                    <a href="/member/view?id=${sessionScope.loggedIn.id}"
+                                       class="nav-link <%= "view".equals(request.getParameter("active")) ? "active text-primary fw-bold bg-light" : "" %>">
+                                        <i class="fa-solid fa-user"></i>
+                                        Your Profile
+                                    </a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="/member/view?id=${sessionScope.loggedIn.id}" class="nav-link">
+                                        <i class="fa-regular fa-address-card"></i>
+                                        Your Profile
+                                    </a>
+                                </c:otherwise>
+                            </c:choose>
                         </li>
                     </c:if>
                     <c:if test="${not loggedIn}">
                         <li class="nav-item">
-                            <a href="/member/login" class="nav-link ${param.active == 'login' ? 'active' : ''}">
+                            <a href="/member/login"
+                               class="nav-link <%= "login".equals(request.getParameter("active")) ? "active text-primary fw-bold bg-light" : "" %>">
                                 <i class="fa-solid fa-arrow-right-to-bracket"></i>
                                 Sign in
                             </a>
@@ -65,7 +83,7 @@
                     </c:if>
                     <c:if test="${loggedIn}">
                         <li class="nav-item">
-                            <a href="/member/logout" class="nav-link ${param.active == 'logout' ? 'active' : ''}">
+                            <a href="/member/logout" class="nav-link">
                                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
                                 Sign out
                             </a>

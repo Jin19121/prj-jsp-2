@@ -80,7 +80,7 @@ public class MemberController {
         }
     }
 
-    @GetMapping("list")
+    @GetMapping("mlist")
     public String list(@RequestParam(name = "page", defaultValue = "1") Integer page,
                        @RequestParam(required = false) String search,
                        @RequestParam(required = false) String keyword,

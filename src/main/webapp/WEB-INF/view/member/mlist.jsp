@@ -13,7 +13,7 @@
 </head>
 <body>
 <c:import url="/WEB-INF/fragment/navbar.jsp">
-    <c:param name="active" value="list"/>
+    <c:param name="active" value="mlist"/>
 </c:import>
 
 <div class="container">
@@ -50,7 +50,7 @@
 <nav class="mt-4">
     <ul class="pagination justify-content-center">
         <c:if test="${pageMap.hasPrev}">
-            <c:url value="/member/list" var="pageLink">
+            <c:url value="/member/mlist" var="pageLink">
                 <c:param name="page" value="${pageMap.prev}"/>
                 <c:param name="search" value="${pageMap.search}"/>
                 <c:param name="keyword" value="${pageMap.keyword}"/>
@@ -62,7 +62,7 @@
             </li>
         </c:if>
         <c:forEach begin="${pageMap.left}" end="${pageMap.right}" var="pageNo">
-            <c:url value="/member/list" var="pageLink">
+            <c:url value="/member/mlist" var="pageLink">
                 <c:param name="page" value="${pageNo}"/>
                 <c:param name="search" value="${pageMap.search}"/>
                 <c:param name="keyword" value="${pageMap.keyword}"/>
@@ -72,7 +72,7 @@
             </li>
         </c:forEach>
         <c:if test="${pageMap.hasNext}">
-            <c:url value="/member/list" var="pageLink">
+            <c:url value="/member/mlist" var="pageLink">
                 <c:param name="page" value="${pageMap.next}"/>
                 <c:param name="search" value="${pageMap.search}"/>
                 <c:param name="keyword" value="${pageMap.keyword}"/>

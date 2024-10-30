@@ -65,7 +65,7 @@
 
             <c:if test="${Admin}">
                 <div class="mx-1 mb-4 d-flex justify-content-end">
-                    <a class="btn btn-sm btn-outline-secondary btn-light" href="/member/list">
+                    <a class="btn btn-sm btn-outline-secondary btn-light" href="/member/mlist">
                         to list
                         <i class="fa-regular fa-address-book"></i>
                     </a>
