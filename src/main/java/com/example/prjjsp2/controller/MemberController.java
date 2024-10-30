@@ -236,14 +236,14 @@ public class MemberController {
                 rttr.addAttribute("id", id);
                 return "redirect:/member/view";
             } else {
-                rttr.addFlashAttribute("message", Map.of("type", "warning",
+                rttr.addFlashAttribute("message", Map.of("type", "danger",
                         "text", "Incorrect Original Password!"));
                 rttr.addAttribute("id", id);
                 return "redirect:/member/edit-password";
             }
         } else {
             rttr.addFlashAttribute("message", Map.of(
-                    "type", "warning",
+                    "type", "danger",
                     "text", "You cannot change other Members' password!"
             ));
             rttr.addAttribute("id", id);
@@ -263,7 +263,7 @@ public class MemberController {
         if (member == null) {
             //로그인 실패
             rttr.addFlashAttribute("message", Map.of(
-                    "type", "warning",
+                    "type", "danger",
                     "text", "Incorrect ID or password!"
             ));
             return "redirect:/member/login";

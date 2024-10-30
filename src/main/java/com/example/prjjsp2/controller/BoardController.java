@@ -23,7 +23,7 @@ public class BoardController {
         if (member == null) {
             //로그인 안 한 상태
             rttr.addFlashAttribute("message", Map.of(
-                    "type", "warning",
+                    "type", "danger",
                     "text", "You are not logged in! Please login first to post!"
             ));
             return "redirect:/member/login";
