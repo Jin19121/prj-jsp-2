@@ -48,7 +48,7 @@
                     <li class="nav-item">
                         <a href="/member/view?id=${sessionScope.loggedIn.id}" class="nav-link">
                             <i class="fa-regular fa-address-card"></i>
-                                ${sessionScope.loggedIn.nickname} Profile
+                            Your Profile
                         </a>
                     </li>
                 </c:if>
@@ -56,7 +56,7 @@
                     <li class="nav-item">
                         <a href="/member/login" class="nav-link">
                             <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                            Login
+                            Log in
                         </a>
                     </li>
                 </c:if>

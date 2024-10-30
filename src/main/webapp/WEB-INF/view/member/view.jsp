@@ -17,10 +17,10 @@
 <%-- 수정/삭제 권한 --%>
 <c:set value="${sessionScope.loggedIn.id == member.id}" var="permitted"/>
 
-<div class="container">
+<div class="container text-bg-primary">
     <div class="row justify-content-center">
-        <div class="col">
-            <h2 class="my-3">${member.nickname}'s Profile</h2>
+        <div class="col-12 col-md-9 col-lg-6">
+            <h2 class="my-3 mx-3">${member.nickname}'s Profile</h2>
             <div class="mb-3">
                 <label for="inputId" class="form-label">ID</label>
                 <input type="text" id="inputId" value="${member.id}" readonly name="id" class="form-control">
@@ -40,7 +40,7 @@
                 <input type="text" id="inputEmail" value="${member.email}" readonly name="email"
                        class="form-control">
             </div>
-            <div class="mb-3">
+            <div class="mb-4">
                 <label for="inputDate" class="form-label">Registered Date</label>
                 <input type="text" id="inputDate" value="${member.signed}" readonly name="signed"
                        class="form-control">
@@ -48,11 +48,11 @@
 
             <div class="mb-3 d-flex justify-content-between">
                 <c:if test="${permitted}">
-                    <a href="/member/edit?id=${member.id}" class="btn btn-outline-primary">
+                    <a href="/member/edit?id=${member.id}" class="btn btn-outline-success btn-light">
                         <i class="fa-solid fa-user-pen"></i>
                         Edit Profile
                     </a>
-                    <button class="btn btn-outline-danger" data-bs-toggle="modal"
+                    <button class="btn btn-outline-danger btn-light" data-bs-toggle="modal"
                             data-bs-target="#deleteConfirmModal1">
                         <i class="fa-solid fa-user-minus"></i>
                         Delete Account

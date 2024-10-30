@@ -14,7 +14,7 @@
 <body>
 <c:import url="/WEB-INF/fragment/navbar.jsp"/>
 
-<div class="container">
+<div class="container text-bg-primary">
     <div class="row justify-content-center">
         <div class="col-12 col-md-9 col-lg-6">
             <h2 class="my-3">Edit Profile</h2>
@@ -29,7 +29,7 @@
                     <div class="input-group">
                         <input value="${member.password}" readonly id="inputPassword" name="password" type="text"
                                class="form-control">
-                        <a href="/member/edit-password?id=${member.id}" class="btn btn-outline-secondary">
+                        <a href="/member/edit-password?id=${member.id}" class="btn btn-outline-secondary btn-light">
                             Update
                         </a>
                     </div>
@@ -39,16 +39,20 @@
                     <input type="text" id="inputNickname" class="form-control" name="nickname"
                            value="${member.nickname}">
                 </div>
-                <div class="mb-3">
+                <div class="mb-4">
                     <label for="inputEmail" class="form-label">E-mail</label>
                     <input type="text" id="inputEmail" class="form-control" name="email" value="${member.email}">
                 </div>
-                <div class="mb-3">
-                    <button class="btn btn-primary" type="button"
+                <div class="mb-3 d-flex justify-content-between">
+                    <button class="btn btn-outline-success btn-light" type="button"
                             data-bs-toggle="modal" data-bs-target="#updateCOnfirmModal1">
                         <i class="fa-regular fa-floppy-disk"></i>
-                        save edit
+                        Save
                     </button>
+                    <a href="/member/view?id=${member.id}" class="btn btn-outline-secondary btn-light">
+                        Cancel
+                        <i class="fa-solid fa-xmark"></i>
+                    </a>
                 </div>
             </form>
         </div>

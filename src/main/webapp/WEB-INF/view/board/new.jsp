@@ -33,7 +33,7 @@
                 <%--                    <input type="text" name="writer" id="inputWriter1" class="form-control"/>--%>
                 <%--                </div>--%>
                 <div class="mb-4">
-                    <button class="btn btn-light">
+                    <button class="btn btn-light btn-outline-success">
                         <i class="fa-solid fa-plus"></i>
                         저장
                     </button>

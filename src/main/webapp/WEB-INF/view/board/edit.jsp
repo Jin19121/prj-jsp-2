@@ -23,7 +23,7 @@
                     <label for="inputTitle1" class="form-label">Title</label>
                     <input type="text" id="inputTitle1" name="title" value="${board.title}" class="form-control">
                 </div>
-                <div class="mb-3">
+                <div class="mb-4">
                     <label for="inputContent" class="form-label">Content</label>
                     <textarea name="content" id="inputContent" class="form-control"
                               cols="30" rows="10">${board.content}</textarea>
@@ -33,12 +33,16 @@
                 <%--                    <input type="text" name="writer" value="${board.writer}" id="inputWriter1" class="form-control"/>--%>
                 <%--                </div>--%>
 
-                <div class="mb-4">
+                <div class="mb-4 mb-3 d-flex justify-content-between">
                     <button class="btn btn-outline-success btn-light" data-bs-toggle="modal"
                             data-bs-target="#updateConfirmModal" type="button">
                         <i class="fa-solid fa-pen-to-square"></i>
                         edit
                     </button>
+                    <a href="/board/view?id=${board.id}" class="btn btn-outline-secondary btn-light">
+                        Cancel
+                        <i class="fa-solid fa-xmark"></i>
+                    </a>
                 </div>
             </form>
         </div>

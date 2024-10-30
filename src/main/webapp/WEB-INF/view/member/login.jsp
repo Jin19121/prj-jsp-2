@@ -16,22 +16,26 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col">
-            <h2 class="my-3">Login</h2>
+        <div class="col-12 col-md-9 col-lg-6">
+            <h2 class="my-3 mx-3">Log in</h2>
             <form method="post">
                 <div class="mb-3">
                     <label for="inputId" class="form-label">ID</label>
                     <input type="text" name="id" id="inputId" class="form-control">
                 </div>
-                <div class="mb-3">
+                <div class="mb-4">
                     <label for="inputPassword" class="form-label">Password</label>
                     <input type="text" name="password" id="inputPassword" class="form-control">
                 </div>
                 <div class="mb-3">
-                    <button class="btn btn-primary">
+                    <button class="btn btn-outline-primary">
                         <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                        Log In
+                        Log in
                     </button>
+                    <a href="/member/register" class="btn btn-outline-success">
+                        <i class="fa-solid fa-user-pen"></i>
+                        Register
+                    </a>
                 </div>
             </form>
         </div>
