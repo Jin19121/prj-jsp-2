@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -96,22 +97,44 @@ public class MemberController {
             //관리자 계정이 아닌 경우
             rttr.addFlashAttribute("message", Map.of(
                     "type", "danger",
-                    "text", "Member List limited to Server Administrators only!"
+                    "text", "You do not have permission to access this page."
             ));
             return "redirect:/board/list";
         }
     }
 
     @GetMapping("view")
-    public void info(String id, Model model) {
+    public String info(String id, Model model, RedirectAttributes rttr,
+                       @SessionAttribute(value = "loggedIn", required = false) Member loggedInMember) {
         Member member = service.view(id);
-        model.addAttribute("member", member);
+
+        try {
+            if (Objects.equals(member.getId(), loggedInMember.getId()) || loggedInMember.getAccess().contains("admin")) {
+                //본인이 로그인 한 경우 || 관리자일 때
+                model.addAttribute("member", member);
+                return null;
+            } else {
+                rttr.addFlashAttribute("message", Map.of(
+                        "type", "danger",
+                        "text", "You cannot view other members' profile!"
+                ));
+                return "redirect:/board/list";
+            }
+        } catch (NullPointerException e) {
+            //로그인 안 한 경우
+            rttr.addFlashAttribute("message", Map.of(
+                    "type", "danger",
+                    "text", "You have not logged in yet!"
+            ));
+            return "redirect:/member/login";
+        }
     }
 
     @PostMapping("delete")
     public String delete(String id, String password,
                          RedirectAttributes rttr, HttpSession session,
                          @SessionAttribute("loggedIn") Member member) {
+
         if (service.hasAccess(id, member)) {
             //본인일 경우 삭제 권한 있음
             if (service.delete(id, password)) {
