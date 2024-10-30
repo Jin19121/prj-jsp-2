@@ -12,4 +12,6 @@ CREATE TABLE board
 SELECT *
 FROM board;
 
-DROP TABLE board;
+#board.writer -> member.id 외래키로 지정
+ALTER TABLE board
+    ADD FOREIGN KEY (writer) REFERENCES member (id);
