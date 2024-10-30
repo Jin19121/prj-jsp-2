@@ -19,7 +19,7 @@
 <div class="container">
     <form action="" class="row justify-content-center">
         <div class="col">
-            <h2 class="my-3">Community Timeline</h2>
+            <h2 class="my-3 mx-1">Timeline</h2>
             <table class="table table-hover">
                 <thead>
                 <tr class="table-primary">

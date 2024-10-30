@@ -25,7 +25,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="inputPassword" class="form-label">Password</label>
-                    <input type="text" id="inputPassword" class="form-control" name="password">
+                    <input type="password" id="inputPassword" class="form-control" name="password">
                 </div>
                 <div class="mb-3">
                     <label for="inputNickname" class="form-label">Nickname</label>
@@ -35,11 +35,17 @@
                     <label for="inputEmail" class="form-label">E-mail</label>
                     <input type="text" id="inputEmail" class="form-control" name="email">
                 </div>
-                <div class="mb-3">
+                <div class="mb-2">
                     <button class="btn btn-success">
                         <i class="fa-solid fa-user-plus"></i>
                         Register
                     </button>
+                </div>
+                <div>
+                    Already have an account?
+                    <a href="/member/login">
+                        Sign in now
+                    </a>
                 </div>
             </form>
         </div>

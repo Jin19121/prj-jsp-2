@@ -27,7 +27,7 @@
             </div>
             <div class="mb-3">
                 <label for="inputPassword" class="form-label">Password</label>
-                <input type="text" id="inputPassword" value="${member.password}" readonly name="password"
+                <input type="password" id="inputPassword" value="${member.password}" readonly name="password"
                        class="form-control">
             </div>
             <div class="mb-3">

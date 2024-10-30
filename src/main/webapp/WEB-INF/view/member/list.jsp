@@ -17,7 +17,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-12 col-md-9 col-lg-6">
-            <h2 class="my-3">Members</h2>
+            <h2 class="my-3 mx-1">Members</h2>
             <table class="table table-hover">
                 <thead>
                 <tr class="table-success">

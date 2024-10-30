@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>LogIn</title>
+    <title>Sign in</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -17,7 +17,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-12 col-md-9 col-lg-6">
-            <h2 class="my-3 mx-3">Log in</h2>
+            <h2 class="my-3 mx-1">Sign into your account</h2>
             <form method="post">
                 <div class="mb-3">
                     <label for="inputId" class="form-label">ID</label>
@@ -25,16 +25,18 @@
                 </div>
                 <div class="mb-4">
                     <label for="inputPassword" class="form-label">Password</label>
-                    <input type="text" name="password" id="inputPassword" class="form-control">
+                    <input type="password" name="password" id="inputPassword" class="form-control">
                 </div>
-                <div class="mb-3">
+                <div class="mb-2 mx-1">
                     <button class="btn btn-outline-primary">
                         <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                        Log in
+                        Sign in
                     </button>
-                    <a href="/member/register" class="btn btn-outline-success">
-                        <i class="fa-solid fa-user-pen"></i>
-                        Register
+                </div>
+                <div>
+                    Don't have an account?
+                    <a href="/member/register">
+                        Register now
                     </a>
                 </div>
             </form>
