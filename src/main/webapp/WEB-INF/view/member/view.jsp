@@ -12,7 +12,9 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
-<c:import url="/WEB-INF/fragment/navbar.jsp"/>
+<c:import url="/WEB-INF/fragment/navbar.jsp">
+    <c:param name="active" value="view"/>
+</c:import>
 
 <%-- 수정/삭제 권한 --%>
 <c:set value="${sessionScope.loggedIn.id == member.id}" var="permitted"/>

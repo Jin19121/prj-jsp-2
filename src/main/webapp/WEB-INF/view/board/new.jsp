@@ -13,7 +13,9 @@
 </head>
 <body>
 <%--메뉴--%>
-<c:import url="/WEB-INF/fragment/navbar.jsp"/>
+<c:import url="/WEB-INF/fragment/navbar.jsp">
+    <c:param name="active" value="new"/>
+</c:import>
 
 <div class="container text-bg-primary">
     <div class="row justify-content-center">
