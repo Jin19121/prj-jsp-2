@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Controller
 @RequiredArgsConstructor
@@ -25,19 +27,55 @@ public class MemberController {
     @PostMapping("register")
     public String signupProcess(Member member, RedirectAttributes rttr) {
         try {
-            service.insertMember(member);
 
-            rttr.addFlashAttribute("message", Map.of(
-                    "type", "success",
-                    "text", "Registered! Welcome to the Crew!"
-            ));
+            if (member.getId() == "" || member.getNickname() == "" || member.getEmail() == "") {
+                rttr.addFlashAttribute("message", Map.of(
+                        "type", "danger",
+                        "text", "Something's missing. Please check and try again."
+                ));
+                return "redirect:/member/register";
+            } else {
+                service.insertMember(member);
+                rttr.addFlashAttribute("message", Map.of(
+                        "type", "success",
+                        "text", "Registered! Welcome to the Crew!"
+                ));
 
-            return "redirect:/member/login";
+                return "redirect:/member/login";
+            }
         } catch (DuplicateKeyException e) {
+            String errorMessage;
+            String exceptionMessage = e.getMessage();
+
+            // 중복된 값을 추출하기 위한 정규 표현식
+            Pattern pattern = Pattern.compile("Duplicate entry '(.+)' for key '(.+)'");
+            Matcher matcher = pattern.matcher(exceptionMessage);
+
+            if (matcher.find()) {
+                String duplicateValue = matcher.group(1); // 중복된 값
+                String key = matcher.group(2); // 중복된 필드명
+
+                // 필드명에 따라 다른 메시지 설정
+                switch (key) {
+                    case "email":
+                        errorMessage = "Email '" + duplicateValue + "' is already in use!";
+                        break;
+                    case "nickname":
+                        errorMessage = "Nickname '" + duplicateValue + "' is already taken!";
+                        break;
+                    default:
+                        errorMessage = "ID '" + duplicateValue + "' is already in use!";
+                        break;
+                }
+            } else {
+                errorMessage = "An unexpected error occurred.";
+            }
+
             rttr.addFlashAttribute("message", Map.of(
                     "type", "danger",
-                    "text", "Nickname or e-mail already exists!"
+                    "text", errorMessage
             ));
+
             return "redirect:/member/register";
         }
     }
@@ -127,9 +165,36 @@ public class MemberController {
                         "text", "Profile edited successfully!"
                 ));
             } catch (DuplicateKeyException e) {
+                String errorMessage;
+                String exceptionMessage = e.getMessage();
+
+                // 중복된 값을 추출하기 위한 정규 표현식
+                Pattern pattern = Pattern.compile("Duplicate entry '(.+)' for key '(.+)'");
+                Matcher matcher = pattern.matcher(exceptionMessage);
+
+                if (matcher.find()) {
+                    String duplicateValue = matcher.group(1); // 중복된 값
+                    String key = matcher.group(2); // 중복된 필드명
+
+                    // 필드명에 따라 다른 메시지 설정
+                    switch (key) {
+                        case "email":
+                            errorMessage = "Email '" + duplicateValue + "' is already in use!";
+                            break;
+                        case "nickname":
+                            errorMessage = "Nickname '" + duplicateValue + "' is already taken!";
+                            break;
+                        default:
+                            errorMessage = "ID '" + duplicateValue + "' is already in use!";
+                            break;
+                    }
+                } else {
+                    errorMessage = "An unexpected error occurred.";
+                }
+
                 rttr.addFlashAttribute("message", Map.of(
                         "type", "danger",
-                        "text", "Nickname or e-mail already exists!"
+                        "text", errorMessage
                 ));
             }
         } else {
@@ -206,7 +271,7 @@ public class MemberController {
             //로그인 성공
             rttr.addFlashAttribute("message", Map.of(
                     "type", "success",
-                    "text", "Welcome!"
+                    "text", "Welcome " + member.getNickname() + "!"
             ));
             session.setAttribute("loggedIn", member);
             return "redirect:/board/list";
