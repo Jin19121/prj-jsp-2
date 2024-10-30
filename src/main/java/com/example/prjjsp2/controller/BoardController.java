@@ -89,7 +89,7 @@ public class BoardController {
                             @SessionAttribute("loggedIn") Member member) {
         Board board = service.view(id);
 
-        if (board.getWriter().equals(member.getId()) || board.getWriter().equals(member.getNickname())) {
+        if (board.getWriter().equals(member.getId()) || board.getWriter().equals(member.getNickname()) || "admin".equals(member.getId())) {
             model.addAttribute("board", board);
             return null;
         } else {

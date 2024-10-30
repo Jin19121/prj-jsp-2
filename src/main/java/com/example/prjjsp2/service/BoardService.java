@@ -72,7 +72,7 @@ public class BoardService {
 
     public void delete(Integer id, Member member) {
         Board board = mapper.selectById(id);
-        if (board.getWriter().equals(member.getId()) || board.getWriter().equals(member.getNickname())) {
+        if (board.getWriter().equals(member.getId()) || board.getWriter().equals(member.getNickname()) || "admin".equals(member.getId())) {
             mapper.deleteById(id);
         } else {
             throw new RuntimeException("You do not have permission to delete this board");
@@ -81,7 +81,7 @@ public class BoardService {
 
     public void update(Board board, Member member) {
         Board board1 = mapper.selectById(board.getId());
-        if (board1.getWriter().equals(member.getId()) || board1.getWriter().equals(member.getNickname())) {
+        if (board1.getWriter().equals(member.getId()) || board1.getWriter().equals(member.getNickname()) || "admin".equals(member.getId())) {
             mapper.update(board);
         } else {
             throw new RuntimeException("You do not have permission to update this board");
