@@ -47,7 +47,7 @@
                 <c:if test="${loggedIn}">
                     <li class="nav-item">
                         <a href="/member/view?id=${sessionScope.loggedIn.id}" class="nav-link">
-                            <i class="fa-regular fa-address-card"></i>
+                            <i class="fa-solid fa-user"></i>
                             Your Profile
                         </a>
                     </li>

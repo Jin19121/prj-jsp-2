@@ -65,7 +65,7 @@
                 <form action="/board/new" class="mx-3">
                     <button class="btn btn-primary btn-sm">
                         New Post
-                        <i class="fa-solid fa-file-circle-plus"></i>
+                        <i class="fa-solid fa-file-pen"></i>
                     </button>
                 </form>
             </div>

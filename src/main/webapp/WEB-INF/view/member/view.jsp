@@ -16,6 +16,8 @@
 
 <%-- 수정/삭제 권한 --%>
 <c:set value="${sessionScope.loggedIn.id == member.id}" var="permitted"/>
+<%--관리자 여부--%>
+<c:set value="${sessionScope.loggedIn.access.contains('admin')}" var="Admin"/>
 
 <div class="container text-bg-primary">
     <div class="row justify-content-center">
@@ -45,9 +47,8 @@
                 <input type="text" id="inputDate" value="${member.signed}" readonly name="signed"
                        class="form-control">
             </div>
-
-            <div class="mb-3 mx-1 d-flex justify-content-between">
-                <c:if test="${permitted}">
+            <c:if test="${permitted}">
+                <div class="mb-3 mx-1 d-flex justify-content-between">
                     <a href="/member/edit?id=${member.id}" class="btn btn-outline-success btn-light">
                         <i class="fa-solid fa-user-pen"></i>
                         Edit Profile
@@ -57,8 +58,17 @@
                         <i class="fa-solid fa-user-minus"></i>
                         Delete Account
                     </button>
-                </c:if>
-            </div>
+                </div>
+            </c:if>
+
+            <c:if test="${Admin}">
+                <div class="mx-1 mb-4 d-flex justify-content-end">
+                    <a class="btn btn-sm btn-outline-secondary btn-light" href="/member/list">
+                        to list
+                        <i class="fa-regular fa-address-book"></i>
+                    </a>
+                </div>
+            </c:if>
         </div>
     </div>
 </div>
